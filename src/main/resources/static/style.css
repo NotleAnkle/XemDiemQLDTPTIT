@@ -1,0 +1,10 @@
+.noti__body{
+    height: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(rgb(255,255,255,0.5), rgb(255,255,255,0.5)), url(https://static.vecteezy.com/system/resources/previews/005/665/541/original/a-set-of-school-items-in-a-simple-doodle-style-line-illustration-isolated-on-background-vector.jpg);
+    background-repeat: repeat;
+    background-size: 50%;
+}

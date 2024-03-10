@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Scores</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+	<div>
+        <form id="loginForm" action="home" method="POST">
+        Username: <input type="text" name="username">
+        <br />
+        Password: <input type="text" name="password" />
+        <br/>
+        <input type="submit" value="Login" />
+        </form>
+        <div id="loggedContent" style="display: none">
+        	<div id ="logoutForm" method ="POST">
+        		<form action="logout">
+        			<div>
+        				<p>THÔNG TIN</p>
+        				<a th:href="@{/user/infor/{id}(id = ${user.id})}">Sửa thông tin</a>
+        			</div>
+        			<p th:text="'Tài khoản: '+${user.username}"></p>
+        			<p th:text="'Họ và tên: '+${user.name}"></p>
+        			<p th:text="'Vai trò: '+${user.role}"></p>
+        			<input type="submit" value="Logout" />
+        		</form>
+
+        	</div>
+        	<div id="funcionBar" style="display: inline-block;">
+        		<p>TÍNH NĂNG</p>
+        		<a th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
+        		<a id="adminLink" href="/admin" style="display: none">Quản lý tài khoản</a>
+        	</div>
+        </div>
+    </div>
+	<div class="container">
+		<div class="row">
+		</div>
+		<tr th:each="term: ${terms}">
+		<td th:text="${term.term}"></td>
+			<table class="table table-striped table-bordered">
+				<thead class="table-dark">
+					<tr>
+					<th>Mã môn học</th>
+					<th>Nhóm/Tổ môn học</th>
+					<th>Tên môn học</th>
+					<th>Số tín chỉ</th>
+					<th>Điểm thi</th>
+					<th>Điểm TK(10)</th>
+					<th>Điểm TK(4)</th>
+					<th>Điểm TK(C)</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="score: ${term.scores}">
+					<td th:text="${score.subject.id}"></td>
+					<td th:text="${score.subject.group}"></td>
+					<td th:text="${score.subject.name}"></td>
+					<td th:text="${score.subject.credit}"></td>
+					<td th:text="${score.exam}"></td>
+					<td th:text="${score.fn10}"></td>
+					<td th:text="${score.fn4}"></td>
+					<td th:text="${score.fnC}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div style="display: flex; justify-content: space-between;">
+				<div>
+					<p th:text ="'Điểm trung bình học kỳ hệ 4 : '+${term.gpa4}"><br>
+					<p th:text ="'Điểm trung bình học kỳ hệ 10 : '+${term.gpa10}"><br>
+					<p th:text ="'Số tín chỉ học kỳ : '+${term.totalCre}"><br>
+				</div>
+				<div>
+					<p th:text ="'Điểm trung bình tích lũy hệ 4 : '+${term.cpa4}"><br>
+					<p th:text ="'Điểm trung bình tích lũy hệ 10 : '+${term.cpa10}"><br>
+					<p th:text ="'Số tín chỉ tích lũy : ' + ${term.cpaCre}"><br>
+				</div>
+			</div>
+		</tr>
+	</div>
+</body>
+</html>
+<script th:inline="javascript">
+	var user = /*[[${user}]]*/ 'default';
+	console.log(user);
+	if(user.username != null){
+		document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('loggedContent').style.display = 'block'
+        if(user.role == "admin")
+        	document.getElementById('adminLink').style.display = 'block'
+	} 
+    var message = /*[[${message}]]*/ 'default';
+    console.log(message);
+    var term = /*[[${terms}]]*/ 'default';
+    console.log(term);
+</script>

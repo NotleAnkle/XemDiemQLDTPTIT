@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+    </head>
+    <body>
+    <div>
+        <form id="loginForm" action="home" method="POST">
+        Username: <input type="text" name="username">
+        <br />
+        Password: <input type="text" name="password" />
+        <br/>
+        <input type="submit" value="Login" />
+        </form>
+        <div id="loggedContent" style="display: none">
+        	<div id ="logoutForm" method ="POST">
+        		<form action="logout">
+        			<div>
+        				<p>THÔNG TIN</p>
+        				<a th:href="@{/user/infor/{id}(id = ${user.id})}">Sửa thông tin</a>
+        			</div>
+        			<p th:text="'Tài khoản: '+${user.username}"></p>
+        			<p th:text="'Họ và tên: '+${user.name}"></p>
+        			<p th:text="'Vai trò: '+${user.role}"></p>
+        			<input type="submit" value="Logout" />
+        		</form>
+
+        	</div>
+        	<div id="funcionBar" style="display: inline-block;">
+        		<p>TÍNH NĂNG</p>
+        		<a th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
+        		<a id="adminLink" href="/admin" style="display: none">Quản lý tài khoản</a>
+        	</div>
+        </div>
+    </div>
+    </body>
+</html>
+<script th:inline="javascript">
+	var user = /*[[${user}]]*/ 'default';
+	console.log(user);
+	if(user.username != null){
+		document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('loggedContent').style.display = 'block'
+        if(user.role == "admin")
+        	document.getElementById('adminLink').style.display = 'block'
+	} 
+    var message = /*[[${message}]]*/ 'default';
+    console.log(message);
+</script>

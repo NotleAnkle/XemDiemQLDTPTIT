@@ -7,13 +7,26 @@
     </head>
     <body>
     <div>
-        <form id="loginForm" action="home" method="POST">
-        Username: <input type="text" name="username">
-        <br />
-        Password: <input type="text" name="password" />
-        <br/>
-        <input type="submit" value="Login" />
-        </form>
+		<div class="sticky-bar">
+			<div class="logo">
+				<img src="logo.png" alt="Logo">
+			</div>
+			<div class="navigation">
+				<a href="#" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
+			</div>
+		</div>
+		<div class="content">
+			<div class="login-container">
+				<h2>Đăng nhập</h2>
+				<form id="loginForm" action="home" method="POST">
+				Username: <input type="text" id="username" name="username" placeholder="Mã sinh viên">
+				<br />
+				Password: <input type="text" id="password" name="password" placeholder="Mật khẩu"/>
+				<br/>
+				<input type="submit" value="Login" />
+				</form>
+			</div>
+		</div>
         <div id="loggedContent" style="display: none">
         	<div id ="logoutForm" method ="POST">
         		<form action="logout">
@@ -34,7 +47,12 @@
         		<a id="adminLink" href="/admin" style="display: none">Quản lý tài khoản</a>
         	</div>
         </div>
+		<div class="footer-bar">
+			<p>Created by Team 0</p>
+		</div>
     </div>
+	
+	<script src="script.js"></script>
     </body>
 </html>
 <script th:inline="javascript">

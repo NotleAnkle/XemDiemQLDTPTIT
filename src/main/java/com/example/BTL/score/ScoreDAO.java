@@ -84,4 +84,62 @@ public class ScoreDAO extends DAO {
         }
 		return score;
 	}
+	public Score getScoreBySubject(String subjectId) {
+		Score score = new Score();
+		String sql = "SELECT * FROM tblscore WHERE subjectId = ?";
+        try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, subjectId);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()) {
+                	score.setId(rs.getInt("id"));
+                	score.setSubjectId(rs.getString("subjectId"));
+                	score.setAttendance(rs.getFloat("atten"));
+    				score.setExercise(rs.getFloat("exer"));
+    				score.setExam(rs.getFloat("exam"));
+    				score.setPractice(rs.getFloat("prac"));
+    				score.setTest(rs.getFloat("test"));
+    				score.setNote(rs.getString("note"));
+                }
+        }catch(Exception e) {
+                e.printStackTrace();
+        }
+		return score;
+	}
+	public void UpdateScore(Score score) {
+		String sql = "UPDATE `qldt`.`tblscore` SET `atten` = ?, `exer` = ?, `test` = ?, `prac` = ?, `exam` = ?, `note` = ? WHERE (`id` = ?);";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setFloat(1, score.getAttendance());
+			ps.setFloat(2, score.getExercise());
+			ps.setFloat(3, score.getTest());
+			ps.setFloat(4, score.getPractice());
+			ps.setFloat(5, score.getExam());
+			ps.setString(6, score.getNote());
+			
+			ps.setInt(7, score.getId());
+			int result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void InsertScore(Score score) {
+		String sql = "INSERT INTO `qldt`.`tblscore` (`studentId`, `subjectId`, `atten`, `exer`, `test`, `prac`, `exam`, `termId`, `note`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, score.getStudentId());
+			ps.setString(2, score.getSubjectId());
+			ps.setFloat(3, score.getAttendance());
+			ps.setFloat(4, score.getExercise());
+			ps.setFloat(5, score.getTest());
+			ps.setFloat(6, score.getPractice());
+			ps.setFloat(7, score.getExam());
+			ps.setInt(8, score.getTermId());
+			ps.setString(9, score.getNote());
+	
+			int result = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

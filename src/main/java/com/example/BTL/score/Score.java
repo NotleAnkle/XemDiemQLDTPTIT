@@ -1,6 +1,6 @@
 package com.example.BTL.score;
 
-import Subject.Subject;
+import com.example.BTL.Subject.Subject;
 
 public class Score {
 	private int id, studentId, termId;

@@ -18,8 +18,6 @@ public class UserController {
     @GetMapping("/home")
     public String getLogin(Model model) {
     	model.addAttribute("message", "dang cmn nhap di");
-    	User user1 = new User();
-    	model.addAttribute("user", user1);
     	return "home";
     }
 

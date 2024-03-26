@@ -1,4 +1,4 @@
-package Subject;
+package com.example.BTL.Subject;
 
 public class ScoreRate {
 	private float attendance, exercise, test, practice, exam;

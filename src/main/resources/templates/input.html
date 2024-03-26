@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Score input</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+    <div>
+		<div class="sticky-bar">
+			<div class="logo">
+				<img src="logo.png" alt="Logo">
+			</div>
+			<div class="navigation">
+				<a href="#" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
+			</div>
+		</div>
+		<div class="content" th:if="${user == null}">
+			<div class="login-container">
+				<h2>Đăng nhập</h2>
+				<form id="loginForm" action="home" method="POST">
+				Username: <input type="text" id="username" name="username" placeholder="Mã sinh viên">
+				<br />
+				Password: <input type="text" id="password" name="password" placeholder="Mật khẩu"/>
+				<br/>
+				<input type="submit" value="Login" />
+				</form>
+			</div>
+		</div>
+        <div id="loggedContent" th:if="${user != null}">
+        	<div id ="logoutForm" method ="POST">
+        		<form action="logout">
+        			<div>
+        				<p>THÔNG TIN</p>
+        				<a id="user" th:href="@{/user/infor/{id}(id = ${user.id})}" th:data-userid="${user.id}">Sửa thông tin</a>
+        			</div>
+        			<p th:text="'Tài khoản: '+${user.username}"></p>
+        			<p th:text="'Họ và tên: '+${user.name}"></p>
+        			<p th:text="'Vai trò: '+${user.role}"></p>
+        			<input type="submit" value="Logout" />
+        		</form>
+
+        	</div>
+        	<div id="funcionBar" style="display: inline-block;">
+        		<p>TÍNH NĂNG</p>
+        		<a th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
+        		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a>
+        	</div>
+        </div>
+		<div class="footer-bar">
+			<p>Created by Team 0</p>
+		</div>
+    </div>
+	
+	<div>
+		<h2>Nhập điểm</h2>
+	    <select id="terms" name="term" onchange="changeTerm()">
+	        <option th:each="term : ${terms}" th:value="${term.id}" th:text="'Học kỳ '+ ${term.term} + ' - Năm học '+${term.year}"></option>
+	    </select>
+	</div>
+	
+	<div id="formScore" class="container">
+		<div class="row">
+		</div>
+			<table class="table table-striped table-bordered">
+				<thead class="table-dark">
+					<tr>
+					<th>Mã môn học</th>
+					<th>Nhóm/Tổ môn học</th>
+					<th>Tên môn học</th>
+					<th>Số tín chỉ</th>
+					<th>Điểm chuyên cần</th>
+					<th>Điểm bài tập</th>
+					<th>Điểm kiểm tra</th>
+					<th>Điểm thực hành</th>
+					<th>Điểm thi</th>
+					<th>Ghi chú</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="score: ${scores}">
+					<td th:text="${score.subject.id}"></td>
+					<td th:text="${score.subject.group}"></td>
+					<td th:text="${score.subject.name}"></td>
+					<td th:text="${score.subject.credit}"></td>
+					<td><input th:value = ${score.attendance}></td>
+					<td><input th:value = ${score.exercise}></td>
+					<td><input th:value = ${score.test}></td>
+					<td><input th:value = ${score.practice}></td>
+					<td><input th:value = ${score.exam}></td>
+					<td><input th:value = ${score.note}></td>
+					
+					</tr>
+				</tbody>
+			</table>
+		<button id="btTry" onclick="TryScore()">Xem điểm trước điểm trung bình</button>
+		<button onclick="SaveScore()">Lưu điểm</button>
+	</div>
+	<div style="display: flex; justify-content: space-between;">
+		<div>
+			<p th:text ="'Điểm trung bình học kỳ hệ 4 : '+${termScore.gpa4}"><br>
+			<p th:text ="'Điểm trung bình học kỳ hệ 10 : '+${termScore.gpa10}"><br>
+			<p th:text ="'Số tín chỉ học kỳ : '+${termScore.totalCre}"><br>
+		</div>
+		<div>
+			<p th:text ="'Điểm trung bình tích lũy hệ 4 : '+${termScore.cpa4}"><br>
+			<p th:text ="'Điểm trung bình tích lũy hệ 10 : '+${termScore.cpa10}"><br>
+			<p th:text ="'Số tín chỉ tích lũy : ' + ${termScore.cpaCre}"><br>
+		</div>
+	</div> 
+	
+    </body>
+</html>
+<script th:inline="javascript">
+	var user = /*[[${user}]]*/ 'default';
+	console.log(user);
+	
+    var message = /*[[${message}]]*/ 'default';
+    console.log(message);
+    
+    var scoresRs = /*[[${scores}]]*/ 'default';
+    console.log(scoresRs);
+    
+    Select();
+    
+    function Select() {
+        // Lấy termId từ đường dẫn URL
+        var termIdFromUrl = window.location.href.match(/\/term\/(\d+)/);
+        if (termIdFromUrl) {
+            termIdFromUrl = parseInt(termIdFromUrl[1]); // Chuyển đổi thành số nguyên
+            // Lặp qua các option và đặt thuộc tính selected cho option có giá trị termIdFromUrl
+            var options = document.getElementById("terms").options;
+            for (var i = 0; i < options.length; i++) {
+            	options[i].selected = false;
+                if (parseInt(options[i].value) === termIdFromUrl) {
+                    options[i].selected = true;
+                }
+                
+            }
+        }
+    };
+    
+    var selectedTermId;
+    var userId;
+    
+    function getIdData(){
+    	selectedTermId = document.getElementById("terms").value;
+    	userId = document.getElementById("user").getAttribute('data-userid');
+    	console.log(selectedTermId);
+    }
+
+    function changeTerm(){
+		getIdData();
+    	fetchScoreInTerm(selectedTermId, userId)
+    }
+    function fetchScoreInTerm(termId, studentId){
+
+        // Tạo đường dẫn URL
+        const url = '/score/user/' + studentId + '/term/' + termId;
+
+        // Thay đổi URL của trình duyệt để chuyển hướng
+        window.location.href = url;
+
+    }
+    function TryScore(){
+        getIdData();
+        
+        // Tạo một mảng để lưu trữ các điểm
+        var scores = [];
+
+        // Lặp qua tất cả các hàng trong bảng điểm và lấy giá trị từ các ô input
+        var rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            var score = {
+                subjectId: row.querySelector('td:nth-child(1)').innerText,
+                groupName: row.querySelector('td:nth-child(2)').innerText,
+                subjectName: row.querySelector('td:nth-child(3)').innerText,
+                credit: row.querySelector('td:nth-child(4)').innerText,
+                attendance: row.querySelector('td:nth-child(5) input').value,
+                exercise: row.querySelector('td:nth-child(6) input').value,
+                test: row.querySelector('td:nth-child(7) input').value,
+                practice: row.querySelector('td:nth-child(8) input').value,
+                exam: row.querySelector('td:nth-child(9) input').value,
+                note: row.querySelector('td:nth-child(10) input').value
+            };
+            scores.push(score);
+        });
+
+        // Gửi dữ liệu điểm đến máy chủ
+        fetchChangeScoreInTerm(selectedTermId, userId, 'POST', scores);
+    }
+    function SaveScore(){
+        getIdData();
+        
+        // Tạo một mảng để lưu trữ các điểm
+        var scores = [];
+
+        // Lặp qua tất cả các hàng trong bảng điểm và lấy giá trị từ các ô input
+        var rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            var score = {
+                subjectId: row.querySelector('td:nth-child(1)').innerText,
+                groupName: row.querySelector('td:nth-child(2)').innerText,
+                subjectName: row.querySelector('td:nth-child(3)').innerText,
+                credit: row.querySelector('td:nth-child(4)').innerText,
+                attendance: row.querySelector('td:nth-child(5) input').value,
+                exercise: row.querySelector('td:nth-child(6) input').value,
+                test: row.querySelector('td:nth-child(7) input').value,
+                practice: row.querySelector('td:nth-child(8) input').value,
+                exam: row.querySelector('td:nth-child(9) input').value,
+                note: row.querySelector('td:nth-child(10) input').value
+            };
+            scores.push(score);
+        });
+
+        // Gửi dữ liệu điểm đến máy chủ
+        fetchChangeScoreInTerm(selectedTermId, userId, 'PUT', scores);
+    }
+
+    function fetchChangeScoreInTerm(termId, studentId, method, scores) {
+        // Tạo dữ liệu formData từ scores và các thông tin cần thiết khác
+        var formData = {
+            termId: termId,
+            studentId: studentId,
+            scores: scores // Sử dụng giá trị của biến scores ở đây
+        };
+
+        // Tạo đường dẫn URL
+        const url = '/score/user/' + studentId + '/term/' + termId;
+
+        // Tạo yêu cầu fetch với method POST hoặc PUT và body là dữ liệu JSON
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (response.redirected) {
+                // Nếu response là một redirect, thực hiện redirect
+                window.location.href = response.url;
+            } else {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Lấy nội dung của trang HTML trả về
+            }
+        })
+        .then(html => {
+            // Thay đổi nội dung của trang hiện tại bằng nội dung HTML mới
+            document.body.innerHTML = html;
+            Select();
+        })
+        .catch(error => {
+            console.error('There was a problem with the POST request:', error);
+        });
+    }
+
+
+
+
+
+
+</script>

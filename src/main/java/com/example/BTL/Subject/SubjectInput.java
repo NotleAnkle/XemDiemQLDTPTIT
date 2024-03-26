@@ -1,15 +1,18 @@
-package Subject;
+package com.example.BTL.Subject;
 
-public class Subject {
+import com.example.BTL.score.Score;
+
+public class SubjectInput {
 	String id, name, group;
 	float credit;
 	ScoreRate rate;
 	boolean isAccum;
-	public Subject() {
+	Score score;
+	public SubjectInput() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Subject(String id, String name, String group, float credit, ScoreRate rate, boolean isAccum) {
+	public SubjectInput(String id, String name, String group, float credit, ScoreRate rate, boolean isAccum) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -17,6 +20,7 @@ public class Subject {
 		this.credit = credit;
 		this.rate = rate;
 		this.isAccum = isAccum;
+		score = new Score();
 	}
 
 	public String getId() {
@@ -57,6 +61,13 @@ public class Subject {
 	public void setAccum(boolean isAccum) {
 		this.isAccum = isAccum;
 	}
-	
+
+	public Score getScore() {
+		return score;
+	}
+
+	public void setScore(Score score) {
+		this.score = score;
+	}
 	
 }

@@ -16,7 +16,7 @@
         </form>
         <div id="loggedContent" style="display: none">
         	<div id ="logoutForm" method ="POST">
-        		<form action="logout">
+        		<form action="/logout">
         			<div>
         				<p>THÔNG TIN</p>
         				<a th:href="@{/user/infor/{id}(id = ${user.id})}">Sửa thông tin</a>
@@ -51,6 +51,7 @@
 					<th>Điểm TK(10)</th>
 					<th>Điểm TK(4)</th>
 					<th>Điểm TK(C)</th>
+					<th>Chi tiết</th>
 					</tr>
 				</thead>
 				
@@ -64,6 +65,9 @@
 					<td th:text="${score.fn10}"></td>
 					<td th:text="${score.fn4}"></td>
 					<td th:text="${score.fnC}"></td>
+					<td>
+						<button th:attr="onclick=|fetchScoreDetails(${score.id})|">|||</button>
+					</td>
 					</tr>
 				</tbody>
 			</table>
@@ -81,6 +85,30 @@
 			</div>
 		</tr>
 	</div>
+	<div id="scoreDetailContainer" style="display: none;">
+	    <div>
+			<div id="attendance">
+				Chuyên cần : 
+				<p id = "attendanceS">
+			</div>
+			<div id="exercise">
+				Bài tập :
+				<p id = "exerciseS">
+			</div>
+			<div id="test">
+				Kiểm tra :
+				<p id = "testS">
+			</div>
+			<div id="practice">
+				Thực hành :
+				<p id = "practiceS">
+			</div>
+			<div id="exam">
+				Điểm thi :
+				<p id = "examS">
+			</div>
+	    </div>
+	</div>
 </body>
 </html>
 <script th:inline="javascript">
@@ -96,4 +124,53 @@
     console.log(message);
     var term = /*[[${terms}]]*/ 'default';
     console.log(term);
+    
+    function fetchScoreDetails(scoreId) {
+        fetch(`/score/${scoreId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Chuyển đổi dữ liệu thành JSON
+            })
+            .then(data => {
+                // Xử lý dữ liệu trả về
+                console.log(data);
+                document.getElementById('scoreDetailContainer').style.display = 'block'
+                if (data.attendance > 0) {
+                    document.getElementById('attendanceS').innerText = data.attendance;
+                    document.getElementById('attendance').style.display = 'block'; // Hiển thị phần tử
+                } else {
+                    document.getElementById('attendance').style.display = 'none'; // Ẩn phần tử
+                }
+                if (data.exercise > 0) {
+                    document.getElementById('exerciseS').innerText = data.exercise;
+                    document.getElementById('exercise').style.display = 'block'; // Hiển thị phần tử
+                } else {
+                    document.getElementById('exercise').style.display = 'none'; // Ẩn phần tử
+                }
+                if (data.test > 0) {
+                    document.getElementById('testS').innerText = data.test;
+                    document.getElementById('test').style.display = 'block'; // Hiển thị phần tử
+                } else {
+                    document.getElementById('test').style.display = 'none'; // Ẩn phần tử
+                }
+                if (data.practice > 0) {
+                    document.getElementById('practiceS').innerText = data.practice;
+                    document.getElementById('practice').style.display = 'block'; // Hiển thị phần tử
+                } else {
+                    document.getElementById('practice').style.display = 'none'; // Ẩn phần tử
+                }
+                if (data.exam > 0) {
+                    document.getElementById('examS').innerText = data.exam;
+                    document.getElementById('exam').style.display = 'block'; // Hiển thị phần tử
+                } else {
+                    document.getElementById('exam').style.display = 'none'; // Ẩn phần tử
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+
 </script>

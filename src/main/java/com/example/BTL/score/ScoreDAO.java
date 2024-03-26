@@ -28,8 +28,9 @@ public class ScoreDAO extends DAO {
 				float test = resultSet.getFloat("test");
 				float prac = resultSet.getFloat("prac");
 				float exam = resultSet.getFloat("exam");
-				String term = resultSet.getString("term");
-				scores.add(new Score(id, studentId, subjectId, atten, exer, test, prac, exam, term));
+				int termId = resultSet.getInt("termId");
+				String note = resultSet.getString("note");
+				scores.add(new Score(id, studentId, subjectId, atten, exer, test, prac, exam, termId, note));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,13 +38,13 @@ public class ScoreDAO extends DAO {
 		return scores;
 	}
 	
-	public List<Score> getStudentScoreByTerm(int studentId, int termNum) {
+	public List<Score> getStudentScoreByTerm(int studentId, int termId) {
 		List<Score> scores = new ArrayList<>();
-		String sql = "select * from tblScore where studentid = ? and term = ?";
+		String sql = "select * from tblScore where studentid = ? and termId = ?";
 		try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, studentId);
-            ps.setInt(2,termNum);
+            ps.setInt(2,termId);
             ResultSet resultSet = ps.executeQuery();
 			while(resultSet.next()) {
 				int id = resultSet.getInt("id");
@@ -53,12 +54,34 @@ public class ScoreDAO extends DAO {
 				float test = resultSet.getFloat("test");
 				float prac = resultSet.getFloat("prac");
 				float exam = resultSet.getFloat("exam");
-				String term = resultSet.getString("term");
-				scores.add(new Score(id, studentId, subjectId, atten, exer, test, prac, exam, term));
+				String note = resultSet.getString("note");
+				scores.add(new Score(id, studentId, subjectId, atten, exer, test, prac, exam, termId, note));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return scores;
+	}
+	public Score getScoreById(String id) {
+		Score score = new Score();
+		String sql = "SELECT * FROM tblscore WHERE id = ?";
+        try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, id);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()) {
+                	score.setId(rs.getInt("id"));
+                	score.setSubjectId(rs.getString("subjectId"));
+                	score.setAttendance(rs.getFloat("atten"));
+    				score.setExercise(rs.getFloat("exer"));
+    				score.setExam(rs.getFloat("exam"));
+    				score.setPractice(rs.getFloat("prac"));
+    				score.setTest(rs.getFloat("test"));
+    				score.setNote(rs.getString("note"));
+                }
+        }catch(Exception e) {
+                e.printStackTrace();
+        }
+		return score;
 	}
 }

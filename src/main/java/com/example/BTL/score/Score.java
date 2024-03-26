@@ -3,19 +3,19 @@ package com.example.BTL.score;
 import Subject.Subject;
 
 public class Score {
-	private int id, studentId;
-	private String term;
+	private int id, studentId, termId;
 	String subjectId;
 	float attendance, exercise, test, practice, exam;
 	float fn10, fn4;
 	String fnC;
 	Subject subject;
+	String note;
 	
 	public Score() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Score(int id, int studentId, String subjectId, float attendance, float exercise, float test, float practice, float exam, String term) {
+	public Score(int id, int studentId, String subjectId, float attendance, float exercise, float test, float practice, float exam, int termId, String note) {
 		super();
 		this.id = id;
 		this.studentId = studentId;
@@ -25,7 +25,8 @@ public class Score {
 		this.test = test;
 		this.practice = practice;
 		this.exam = exam;
-		this.term = term; 
+		this.termId = termId;
+		this.note = note;
 	}
 
 	public int getId() {
@@ -115,15 +116,13 @@ public class Score {
 	public void setPractice(float practice) {
 		this.practice = practice;
 	}
-	
-	
 
-	public String getTerm() {
-		return term;
+	public int getTermId() {
+		return termId;
 	}
 
-	public void setTerm(String term) {
-		this.term = term;
+	public void setTermId(int termId) {
+		this.termId = termId;
 	}
 
 	public Subject getSubject() {
@@ -132,6 +131,14 @@ public class Score {
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	public void FinalGrace(float sc10) {

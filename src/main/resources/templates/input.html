@@ -76,6 +76,9 @@
 					<th>Điểm thực hành</th>
 					<th>Điểm thi</th>
 					<th>Ghi chú</th>
+					<th>Điểm TK(10)</th>
+					<th>Điểm TK(4)</th>
+					<th>Điểm TK(C)</th>
 					</tr>
 				</thead>
 				
@@ -91,6 +94,9 @@
 					<td><input th:value = ${score.practice} type="number" min="0" max="10"></td>
 					<td><input th:value = ${score.exam} type="number" min="0" max="10"></td>
 					<td><input th:value = ${score.note} type="text"></td>
+					<td th:text="${score.fn10}"></td>
+					<td th:text="${score.fn4}"></td>
+					<td th:text="${score.fnC}"></td>
 					
 					</tr>
 				</tbody>

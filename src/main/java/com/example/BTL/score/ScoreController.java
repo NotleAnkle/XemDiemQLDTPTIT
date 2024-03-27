@@ -120,6 +120,14 @@ public class ScoreController {
 		
 		List<Score> tryTermScore = rs.getScores();
 		
+		for(int i = 0; i< tryTermScore.size(); i++) {
+			Score sc = tryTermScore.get(i);
+			Subject sub = subjectDAO.getSubject(sc.getSubjectId()); 
+			sc.setSubject(sub);
+			float fnSc = sc.CalFinalGracee();
+			sc.FinalGrace(fnSc);
+		}
+		
 		ResultScore termScore = CalGPA(tryTermScore);
 		
 		model.addAttribute("scores",tryTermScore);
@@ -151,6 +159,14 @@ public class ScoreController {
 	public String saveScore(@RequestBody RequestScore rs, Model model, @PathVariable String termId, @PathVariable String id) {
 		
 		List<Score> tryTermScore = rs.getScores();
+		
+		for(int i = 0; i< tryTermScore.size(); i++) {
+			Score sc = tryTermScore.get(i);
+			Subject sub = subjectDAO.getSubject(sc.getSubjectId()); 
+			sc.setSubject(sub);
+			float fnSc = sc.CalFinalGracee();
+			sc.FinalGrace(fnSc);
+		}
 		
 		List<Score> allScore = scoreDAO.getStudentScore(Integer.parseInt(id));
 		List<String> allScoreSubjectId = new ArrayList<>();
@@ -201,11 +217,8 @@ public class ScoreController {
 
 				sc.setSubject(sub);
 
-				ScoreRate rate = sub.getRate();
+				float fnSc = sc.CalFinalGracee();
 
-				float fnSc = (sc.attendance * rate.getAttendance() + sc.exercise * rate.getExercise()
-						+ sc.test * rate.getTest() + sc.exam * rate.getExam() + sc.practice * rate.getPractice());
-				fnSc = (float) (Math.ceil(fnSc * 10) / 10);
 				sc.FinalGrace(fnSc);
 
 				if (sub.isAccum()) {

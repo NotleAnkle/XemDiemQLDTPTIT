@@ -1,5 +1,6 @@
 package com.example.BTL.score;
 
+import com.example.BTL.Subject.ScoreRate;
 import com.example.BTL.Subject.Subject;
 
 public class Score {
@@ -139,6 +140,15 @@ public class Score {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+	
+	public float CalFinalGracee() {
+		ScoreRate rate = subject.getRate();
+
+		float fnSc = (this.attendance * rate.getAttendance() + this.exercise * rate.getExercise()
+				+ this.test * rate.getTest() + this.exam * rate.getExam() + this.practice * rate.getPractice());
+		fnSc = (float) (Math.ceil(fnSc * 10) / 10);
+		return fnSc;
 	}
 
 	public void FinalGrace(float sc10) {

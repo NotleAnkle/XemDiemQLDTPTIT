@@ -106,6 +106,30 @@ public class ScoreDAO extends DAO {
         }
 		return score;
 	}
+	public Score getScoreBySubjectAndTerm(String subjectId, String termId) {
+		Score score = new Score();
+		String sql = "SELECT * FROM tblscore WHERE subjectId = ? and termId = ?";
+        try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, subjectId);
+                ps.setString(2, termId);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()) {
+                	score.setId(rs.getInt("id"));
+                	score.setSubjectId(rs.getString("subjectId"));
+                	score.setAttendance(rs.getFloat("atten"));
+    				score.setExercise(rs.getFloat("exer"));
+    				score.setExam(rs.getFloat("exam"));
+    				score.setPractice(rs.getFloat("prac"));
+    				score.setTest(rs.getFloat("test"));
+    				score.setNote(rs.getString("note"));
+    				score.setTermId(Integer.parseInt(termId));
+                }
+        }catch(Exception e) {
+                e.printStackTrace();
+        }
+		return score;
+	}
 	public void UpdateScore(Score score) {
 		String sql = "UPDATE `qldt`.`tblscore` SET `atten` = ?, `exer` = ?, `test` = ?, `prac` = ?, `exam` = ?, `note` = ? WHERE (`id` = ?);";
 		try {

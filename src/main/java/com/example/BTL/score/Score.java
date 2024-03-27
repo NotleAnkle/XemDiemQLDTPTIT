@@ -186,9 +186,12 @@ public class Score {
 			fn4 = (float)3.7;
 			fnC = "A";
 		}
-		if(9 <= sc10 && sc10 < 10){
+		if(9 <= sc10 && sc10 <= 10){
 			fn4 = (float)4;
 			fnC = "A+";
 		}
+	}
+	public boolean compareTo(Score sc) {
+		return this.fn10 > sc.fn10;
 	}
 }

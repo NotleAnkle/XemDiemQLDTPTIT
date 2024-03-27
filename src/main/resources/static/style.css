@@ -123,3 +123,22 @@ body {
     background-color: rgba(255, 255, 255, 0.5); /* Màu nền với độ mờ */
     z-index: 9999; /* Đảm bảo khối này hiển thị trên các khối khác */
 }
+
+body {
+    display: flex;
+    justify-content: space-between;
+}
+
+#loggedContent {
+    width: 30%; 
+    padding: 0 20px; 
+}
+
+#funcionBar {
+    margin-top: 20px; 
+}
+
+.container {
+    width: 65%;
+    padding: 20px; 
+}

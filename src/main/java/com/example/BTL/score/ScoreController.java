@@ -59,7 +59,7 @@ public class ScoreController {
 
 			ResultScore rs = CalGPA(scoreInTerm.get(i));
 
-			totalCre += rs.getTotalCre();
+			totalCre += rs.getCpaCre();
 			totalSc10 += rs.getTotalSc10();
 			totalSc4 += rs.getTotalSc4();
 
@@ -105,9 +105,9 @@ public class ScoreController {
 		
 		List<Score> allScore = scoreDAO.getStudentScore(Integer.parseInt(id));
 		ResultScore cpaScore = CalGPA(allScore);
-		termScore.setCpa10(cpaScore.getGpa10());
-		termScore.setCpa4(cpaScore.getGpa4());
-		termScore.setCpaCre(cpaScore.getTotalCre());
+		termScore.setCpa10(cpaScore.getCpa10());
+		termScore.setCpa4(cpaScore.getCpa4());
+		termScore.setCpaCre(cpaScore.getCpaCre());
 		
 		model.addAttribute("termScore", termScore);
 		return "input";
@@ -139,9 +139,9 @@ public class ScoreController {
 		}
 		
 		ResultScore cpaScore = CalGPA(allScore);
-		termScore.setCpa10(cpaScore.getGpa10());
-		termScore.setCpa4(cpaScore.getGpa4());
-		termScore.setCpaCre(cpaScore.getTotalCre());
+		termScore.setCpa10(cpaScore.getCpa10());
+		termScore.setCpa4(cpaScore.getCpa4());
+		termScore.setCpaCre(cpaScore.getCpaCre());
 		
 		model.addAttribute("termScore", termScore);
 		
@@ -190,33 +190,46 @@ public class ScoreController {
 
 	private ResultScore CalGPA(List<Score> scores) {
 
-		int totalCredit = 0;
-		float totalSc10 = 0;
-		float totalSc4 = 0;
+		int totalCredit = 0, credit = 0;
+		float totalSc10 = 0, sc10 = 0;
+		float totalSc4 = 0, sc4 = 0;
 
 		for (int i = 0; i < scores.size(); i++) {
 			Score sc = scores.get(i);
-			Subject sub = subjectDAO.getSubject(sc.getSubjectId());
+			if(!sc.note.trim().equals("I")) {
+				Subject sub = subjectDAO.getSubject(sc.getSubjectId());
 
-			sc.setSubject(sub);
+				sc.setSubject(sub);
 
-			ScoreRate rate = sub.getRate();
+				ScoreRate rate = sub.getRate();
 
-			float fnSc = (sc.attendance * rate.getAttendance() + sc.exercise * rate.getExercise()
-					+ sc.test * rate.getTest() + sc.exam * rate.getExam() + sc.practice * rate.getPractice());
-			fnSc = (float) (Math.ceil(fnSc * 10) / 10);
-			sc.FinalGrace(fnSc);
+				float fnSc = (sc.attendance * rate.getAttendance() + sc.exercise * rate.getExercise()
+						+ sc.test * rate.getTest() + sc.exam * rate.getExam() + sc.practice * rate.getPractice());
+				fnSc = (float) (Math.ceil(fnSc * 10) / 10);
+				sc.FinalGrace(fnSc);
 
-			if (sub.isAccum()) {
-				totalSc10 += fnSc * sub.getCredit();
-				totalSc4 += sc.fn4 * sub.getCredit();
-				totalCredit += sub.getCredit();
+				if (sub.isAccum()) {
+					totalSc10 += fnSc * sub.getCredit();
+					totalSc4 += sc.fn4 * sub.getCredit();
+					totalCredit += sub.getCredit();
+					if(!sc.note.trim().equals("R") && !sc.note.trim().equals("M")) {
+						sc10 += fnSc * sub.getCredit();
+						sc4 += sc.fn4 * sub.getCredit();
+						credit += sub.getCredit();
+					}
+				}
 			}
 		}
-		float gpa10 = (float) Math.round((totalSc10 / totalCredit) * 100) / 100;
-		float gpa4 = (float) Math.round((totalSc4 / totalCredit) * 100) / 100;
+		float gpa10 = (float) Math.round((sc10 / credit) * 100) / 100;
+		float gpa4 = (float) Math.round((sc4 / credit) * 100) / 100;
+		
+		float cpa10 = (float) Math.round((totalSc10 / totalCredit) * 100) / 100;
+		float cpa4 = (float) Math.round((totalSc4 / totalCredit) * 100) / 100;
 
-		ResultScore rs = new ResultScore(scores, gpa10, gpa4, totalCredit, totalSc10, totalSc4);
+		ResultScore rs = new ResultScore(scores, gpa10, gpa4, credit, totalSc10, totalSc4);
+		rs.setCpaCre(totalCredit);
+		rs.setCpa10(cpa10);
+		rs.setCpa4(cpa4);
 		return rs;
 	}
 }

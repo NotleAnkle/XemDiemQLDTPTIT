@@ -108,6 +108,7 @@ body {
     }
 
     .footer-bar {
+		margin-top: 10%;
         padding: 5px;
     }
 }

@@ -85,11 +85,11 @@
 					<td th:text="${score.subject.group}"></td>
 					<td th:text="${score.subject.name}"></td>
 					<td th:text="${score.subject.credit}"></td>
-					<td><input th:value = ${score.attendance} type="number"></td>
-					<td><input th:value = ${score.exercise} type="number"></td>
-					<td><input th:value = ${score.test} type="number"></td>
-					<td><input th:value = ${score.practice} type="number"></td>
-					<td><input th:value = ${score.exam} type="number"></td>
+					<td><input th:value = ${score.attendance} type="number" min="0" max="10"></td>
+					<td><input th:value = ${score.exercise} type="number" min="0" max="10"></td>
+					<td><input th:value = ${score.test} type="number" min="0" max="10"></td>
+					<td><input th:value = ${score.practice} type="number" min="0" max="10"></td>
+					<td><input th:value = ${score.exam} type="number" min="0" max="10"></td>
 					<td><input th:value = ${score.note} type="text"></td>
 					
 					</tr>

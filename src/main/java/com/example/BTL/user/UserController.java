@@ -17,13 +17,16 @@ public class UserController {
     
     @GetMapping("/home")
     public String getLogin(Model model) {
+    	if(user.getUsername() != null) {
+    		model.addAttribute("user", user);
+    	}
     	model.addAttribute("message", "dang cmn nhap di");
     	return "home";
     }
 
     @PostMapping("/home")
     public String checkLogin(@RequestParam String username, @RequestParam String password, Model model) {
-        User user = new User();
+    	User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         if(userDAO.checkLogin(user)) {

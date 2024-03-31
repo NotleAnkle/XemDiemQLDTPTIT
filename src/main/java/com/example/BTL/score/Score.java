@@ -146,7 +146,7 @@ public class Score {
 		ScoreRate rate = subject.getRate();
 
 		float fnSc = (this.attendance * rate.getAttendance() + this.exercise * rate.getExercise()
-				+ this.test * rate.getTest() + this.exam * rate.getExam() + this.practice * rate.getPractice());
+				+ this.test * rate.getTest() + this.exam * rate.getExam() + this.practice * rate.getPractice())/100;
 		fnSc = (float) (Math.ceil(fnSc * 10) / 10);
 		return fnSc;
 	}

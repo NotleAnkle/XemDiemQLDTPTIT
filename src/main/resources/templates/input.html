@@ -89,12 +89,29 @@
 					<td th:text="${score.subject.group}"></td>
 					<td th:text="${score.subject.name}"></td>
 					<td th:text="${score.subject.credit}"></td>
-					<td><input th:value = ${score.attendance} id="numberInput" type="number" min="0" max="10"></td>
-					<td><input th:value = ${score.exercise} id="numberInput" type="number" min="0" max="10"></td>
-					<td><input th:value = ${score.test} id="numberInput" type="number" min="0" max="10"></td>
-					<td><input th:value = ${score.practice} id="numberInput" type="number" min="0" max="10"></td>
-					<td><input th:value = ${score.exam} id="numberInput" type="number" min="0" max="10"></td>
-					<td><input th:value = ${score.note} id="numberInput" type="text"></td>
+					<td>
+						<input th:value = ${score.attendance} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<p th:text="${score.subject.rate.attendance}+ '%'">
+					</td>
+					<td>
+						<input th:value = ${score.exercise} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<p th:text="${score.subject.rate.exercise}+ '%'">
+					</td>
+					<td>
+						<input th:value = ${score.test} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<p th:text="${score.subject.rate.test}+ '%'">
+					</td>
+					<td>
+						<input th:value = ${score.practice} id="numberInput" type="number"  onfocus="clearInput(this)" onblur="validateInput(this)">
+						<p th:text="${score.subject.rate.practice}+ '%'">
+					</td>
+					<td>
+						<input th:value = ${score.exam} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<p th:text="${score.subject.rate.exam}+ '%'">
+					</td>
+					<td>
+						<input th:value = ${score.note} id="numberInput" type="text" onfocus="clearInput(this)" onblur="validateNoteInput(this)">
+					</td>
 					<td th:text="${score.fn10}"></td>
 					<td th:text="${score.fn4}"></td>
 					<td th:text="${score.fnC}"></td>
@@ -131,6 +148,11 @@
     console.log(scoresRs);
     
     Select();
+    window.addEventListener('popstate', function(event) {
+        // Xử lý khi người dùng nhấn nút quay lại của trình duyệt
+        console.log('Người dùng đã nhấn nút quay lại');
+        changeTerm();
+    });
     
     function Select() {
         // Lấy termId từ đường dẫn URL
@@ -166,6 +188,8 @@
 
         // Tạo đường dẫn URL
         const url = '/score/user/' + studentId + '/term/' + termId;
+        
+        window.history.replaceState({}, '', url);
 
         // Thay đổi URL của trình duyệt để chuyển hướng
         window.location.href = url;
@@ -266,16 +290,45 @@
         });
     }
 
-    function validateInput() {
-        var numberInput = document.getElementById("numberInput").value;
-        if (numberInput < 0 || numberInput > 10) {
-            alert("Vui lòng nhập số từ 0 tới 10!");
-            return false;
+    var ivalue;
+    function validateInput(input) {
+        var value = parseFloat(input.value); // Chuyển đổi giá trị nhập vào thành số thực
+
+        // Kiểm tra nếu giá trị không phải là một số hoặc là NaN
+        if (isNaN(value)) {
+            input.value = ivalue; // Đặt giá trị mặc định là 0 nếu không phải là một số
+            alert("Vui lòng nhập một số.");
+        } else {
+            // Kiểm tra nếu giá trị nhỏ hơn 0 hoặc lớn hơn 10
+            if (value < 0 || value > 10) {
+                input.value = ivalue; // Nếu nằm ngoài phạm vi, đặt giá trị mặc định là 0
+                alert("Giá trị không hợp lệ");
+            }
         }
-        return true;
+    }
+    function clearInput(input) {
+    	ivalue = input.value;
+    	input.value = '';
     }
 
+    function validateNoteInput(input) {
+        var value = input.value; 
 
-
+        // Kiểm tra nếu giá trị không phải là một số hoặc là NaN
+        if (!isNaN(value)) {
+            input.value = ivalue; // Đặt giá trị mặc định là 0 nếu không phải là một số
+            alert("Vui lòng nhập một chữ.");
+        } else {
+            // Mảng chứa các giá trị cho phép
+            var allowedValues = ['I', 'R', 'M', 'V'];
+				
+            // Kiểm tra xem giá trị nhập vào có trong danh sách cho phép hay không
+            if (!allowedValues.includes(value)) {
+                // Nếu không, đặt giá trị của ô input thành rỗng
+            	input.value = ivalue;
+            	alert("Giá trị không hợp lệ");
+            }
+        }
+    }
 
 </script>

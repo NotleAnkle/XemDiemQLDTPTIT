@@ -14,31 +14,31 @@ public class ScoreRate {
 		this.exam = exam;
 	}
 	public float getAttendance() {
-		return attendance/100;
+		return attendance;
 	}
 	public void setAttendance(float attendance) {
 		this.attendance = attendance;
 	}
 	public float getExercise() {
-		return exercise/100;
+		return exercise;
 	}
 	public void setExercise(float exercise) {
 		this.exercise = exercise;
 	}
 	public float getTest() {
-		return test/100;
+		return test;
 	}
 	public void setTest(float test) {
 		this.test = test;
 	}
 	public float getExam() {
-		return exam/100;
+		return exam;
 	}
 	public void setExam(float exam) {
 		this.exam = exam;
 	}
 	public float getPractice() {
-		return practice/100;
+		return practice;
 	}
 	public void setPractice(float practice) {
 		this.practice = practice;

@@ -94,7 +94,9 @@ public class ScoreController {
 		List<Score> scoreInTerm = new ArrayList<>();
 		for (int i = 0; i < subIds.size(); i++) {
 			Score score = scoreDAO.getScoreBySubjectAndTerm(subIds.get(i), termId);
+			
 			Subject sub = subjectDAO.getSubject(subIds.get(i));
+			
 			score.setSubjectId(subIds.get(i));
 			score.setSubject(sub);
 			score.setStudentId(Integer.valueOf(id));

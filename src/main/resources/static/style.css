@@ -15,15 +15,18 @@ body {
 }
 
 .sticky-bar {
+    background-color: red;
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    background-color: red;
-    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
+}
+
+.navigation {
+    margin-left: auto;
 }
 
 .logo img {
@@ -39,7 +42,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px); /* 120px là chiều cao của sticky bar và footer */
+    height: 100vh; /* Để chiều cao của .content bằng chiều cao của màn hình */
+}
+
+#loggedContent {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%; /* Chiều rộng của phần loggedContent */
+    background-color: red;
+    padding: 20px;
+    color: white;
+}
+
+#funcionBar {
+    position: absolute;
+    top: calc(100% + 20px); /* Cách top của loggedContent 20px */
+    right: 0;
+    width: 30%;
+    background-color: red;
+    padding: 20px;
+    color: white;
 }
 
 .login-container {
@@ -48,6 +71,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 10px;
     max-width: 300px;
+    margin-left: 20%;
 }
 
 .login-container h2 {
@@ -72,16 +96,80 @@ body {
     cursor: pointer;
 }
 
+h2 {
+    margin-top: 20px; /* Cách phần trước 20px */
+    margin-bottom: 10px; /* Cách phần sau 10px */
+    font-size: 24px; /* Kích thước chữ 24px */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+/* Mỗi <tr th:each="term: ${terms}"> */
+tr {
+    margin-bottom: 20px; /* Khoảng cách giữa các dòng là 20px */
+}
+
+/* Các bảng <td th:text="${term.term}"></td> */
+td {
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+}
+
+/* Các nút button bên cạnh mỗi môn học */
+button {
+    background-color: transparent; /* Nền trong suốt */
+    border: none; /* Loại bỏ viền */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
+}
+
+#scoreDetailContainer {
+    position: fixed; /* Hiển thị cố định */
+    top: 50%; /* Cách đỉnh trang 50% */
+    left: 50%; /* Cách lề trái 50% */
+    transform: translate(-50%, -50%); /* Dịch chuyển khung điểm tới vị trí chính giữa */
+    padding: 20px; /* Khoảng cách viền và nội dung */
+    background-color: white; /* Màu nền trắng */
+    border: 1px solid black; /* Viền đen */
+    z-index: 9999; /* Đảm bảo khung hiển thị trên cùng */
+}
+
+#funcionBar > div {
+    flex: 1; /* Phần tử chiếm một phần bằng nhau */
+    margin-right: 10px; /* Khoảng cách bên phải 10px */
+}
+
+form {
+    width: 50%; /* Đảm bảo form chiếm một phần nhỏ của loggedContent */
+    margin-left: 1%; /* Khoảng cách từ lề trái của màn hình */
+    float: left; /* Cho phần tử form nằm bên trái */
+}
+
+form button {
+    background-color: red;
+    color: white;
+    border: none; /* Loại bỏ viền */
+    padding: 10px 20px; /* Tăng khoảng cách giữa nút và văn bản */
+    cursor: pointer; /* Biến con trỏ thành dấu nhấn khi di chuột vào nút */
+}
+
+form button:hover {
+    background-color: darkred;
+}
+
+form input,
+form button {
+    margin-bottom: 10px; /* Khoảng cách giữa các dòng */
+}
+
 .footer-bar {
     position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
     background-color: red;
-    padding: 10px;
     text-align: center;
-    color: white;
+    padding: 10px 0;
 }
+
+
+
 
 /* Responsive styles */
 @media only screen and (max-width: 600px) {
@@ -112,6 +200,7 @@ body {
         padding: 5px;
     }
 }
+
 #scoreDetailContainer {
     display: flex;
     justify-content: center; /* Canh giữa theo chiều ngang */
@@ -123,6 +212,13 @@ body {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.5); /* Màu nền với độ mờ */
     z-index: 9999; /* Đảm bảo khối này hiển thị trên các khối khác */
+}
+
+.close-button {
+    position: absolute; /* Hiển thị tuyệt đối */
+    top: 10px; /* Cách đỉnh 10px */
+    right: 10px; /* Cách lề phải 10px */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
 }
 
 body {

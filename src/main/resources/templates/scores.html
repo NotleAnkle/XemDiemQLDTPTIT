@@ -44,7 +44,7 @@
 		<tr th:each="term: ${terms}">
 		<td th:text="${term.term}"></td>
 			<table class="table table-striped table-bordered">
-				<thead class="table-dark">
+					
 					<tr>
 					<th>Mã môn học</th>
 					<th>Nhóm/Tổ môn học</th>
@@ -89,6 +89,7 @@
 		</tr>
 	</div>
 	<div id="scoreDetailContainer" style="display: none;">
+		<button class="close-button" onclick="closeScoreDetail()">X</button>
 	    <div>
 			<div id="attendance">
 				Chuyên cần : 
@@ -173,5 +174,11 @@
                 console.error('There was a problem with the fetch operation:', error);
             });
     }
+	
+	// Hàm đóng khung chi tiết điểm
+	function closeScoreDetail() {
+	    var scoreDetailContainer = document.getElementById("scoreDetailContainer");
+	    scoreDetailContainer.style.display = "none";
+	}
 
 </script>

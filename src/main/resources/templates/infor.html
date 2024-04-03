@@ -34,7 +34,7 @@
         		<a id="adminLink" href="/admin" style="display: none">Quản lý tài khoản</a>
         	</div>
         </div>
-        <div>
+	<div>
         <form th:object = "${user}">
         	Id: <input th:value="${user.id}" disabled="disabled"> <br>
         	Tên tài khoản: <input th:value="${user.username}" disabled="disabled"> <br>
@@ -42,7 +42,7 @@
         	Họ Tên: <input type="text" th:value="${user.name}"> <br>
         	<button type="submit">Lưu thay đổi</button>
         </form>
-        </div>
+	</div>
 		
 </body>
 </html>

@@ -9,11 +9,8 @@
     <body>
     <div>
 		<div class="sticky-bar">
-			<div class="logo">
-				<img th:href="@{/logo.png}" alt="Logo">
-			</div>
 			<div class="navigation">
-				<a href="#" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
+				<a href="/home" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
 			</div>
 		</div>
 		<div class="content" th:if="${user == null}">
@@ -33,7 +30,6 @@
         		<form action="logout">
         			<div>
         				<p>THÔNG TIN</p>
-        				<a th:href="@{/user/infor/{id}(id = ${user.id})}">Sửa thông tin</a>
         			</div>
         			<p th:text="'Tài khoản: '+${user.username}"></p>
         			<p th:text="'Họ và tên: '+${user.name}"></p>
@@ -43,9 +39,9 @@
 
         	</div>
         	<div id="funcionBar" style="display: inline-block;">
-        		<p>TÍNH NĂNG</p>3
+        		<p>TÍNH NĂNG</p>
         		<a th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
-        		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a>
+<!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
         		<a th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a>
         	</div>
         </div>

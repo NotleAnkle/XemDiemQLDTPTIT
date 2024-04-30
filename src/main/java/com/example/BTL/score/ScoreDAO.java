@@ -71,6 +71,7 @@ public class ScoreDAO extends DAO {
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()) {
                 	score.setId(rs.getInt("id"));
+                	score.setStudentId(rs.getInt("studentId"));
                 	score.setSubjectId(rs.getString("subjectId"));
                 	score.setAttendance(rs.getFloat("atten"));
     				score.setExercise(rs.getFloat("exer"));
@@ -78,28 +79,7 @@ public class ScoreDAO extends DAO {
     				score.setPractice(rs.getFloat("prac"));
     				score.setTest(rs.getFloat("test"));
     				score.setNote(rs.getString("note"));
-                }
-        }catch(Exception e) {
-                e.printStackTrace();
-        }
-		return score;
-	}
-	public Score getScoreBySubject(String subjectId) {
-		Score score = new Score();
-		String sql = "SELECT * FROM tblscore WHERE subjectId = ?";
-        try {
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setString(1, subjectId);
-                ResultSet rs = ps.executeQuery();
-                if(rs.next()) {
-                	score.setId(rs.getInt("id"));
-                	score.setSubjectId(rs.getString("subjectId"));
-                	score.setAttendance(rs.getFloat("atten"));
-    				score.setExercise(rs.getFloat("exer"));
-    				score.setExam(rs.getFloat("exam"));
-    				score.setPractice(rs.getFloat("prac"));
-    				score.setTest(rs.getFloat("test"));
-    				score.setNote(rs.getString("note"));
+    				score.setTermId(rs.getInt("termId"));
                 }
         }catch(Exception e) {
                 e.printStackTrace();
@@ -116,6 +96,7 @@ public class ScoreDAO extends DAO {
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()) {
                 	score.setId(rs.getInt("id"));
+                	score.setStudentId(rs.getInt("studentId"));
                 	score.setSubjectId(rs.getString("subjectId"));
                 	score.setAttendance(rs.getFloat("atten"));
     				score.setExercise(rs.getFloat("exer"));
@@ -130,7 +111,7 @@ public class ScoreDAO extends DAO {
         }
 		return score;
 	}
-	public void UpdateScore(Score score) {
+	public boolean UpdateScore(Score score) {
 		String sql = "UPDATE `qldt`.`tblscore` SET `atten` = ?, `exer` = ?, `test` = ?, `prac` = ?, `exam` = ?, `note` = ? WHERE (`id` = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -143,11 +124,14 @@ public class ScoreDAO extends DAO {
 			
 			ps.setInt(7, score.getId());
 			int result = ps.executeUpdate();
+			
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
-	public void InsertScore(Score score) {
+	public boolean InsertScore(Score score) {
 		String sql = "INSERT INTO `qldt`.`tblscore` (`studentId`, `subjectId`, `atten`, `exer`, `test`, `prac`, `exam`, `termId`, `note`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -162,8 +146,11 @@ public class ScoreDAO extends DAO {
 			ps.setString(9, score.getNote());
 	
 			int result = ps.executeUpdate();
+			
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 }

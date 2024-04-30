@@ -1,5 +1,7 @@
 package com.example.BTL.score;
 
+import java.util.Objects;
+
 import com.example.BTL.Subject.ScoreRate;
 import com.example.BTL.Subject.Subject;
 
@@ -194,4 +196,37 @@ public class Score {
 	public boolean compareTo(Score sc) {
 		return this.fn10 > sc.fn10;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(attendance, exam, exercise, id, practice, studentId, subjectId, termId, test);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Score other = (Score) obj;
+		return Float.floatToIntBits(attendance) == Float.floatToIntBits(other.attendance)
+				&& Float.floatToIntBits(exam) == Float.floatToIntBits(other.exam)
+				&& Float.floatToIntBits(exercise) == Float.floatToIntBits(other.exercise) && id == other.id
+				&& Float.floatToIntBits(practice) == Float.floatToIntBits(other.practice)
+				&& studentId == other.studentId && Objects.equals(subjectId, other.subjectId) && termId == other.termId
+				&& Float.floatToIntBits(test) == Float.floatToIntBits(other.test);
+	}
+
+	@Override
+	public String toString() {
+		return "Score [id=" + id + ", studentId=" + studentId + ", termId=" + termId + ", subjectId=" + subjectId
+				+ ", attendance=" + attendance + ", exercise=" + exercise + ", test=" + test + ", practice=" + practice
+				+ ", exam=" + exam + ", fn10=" + fn10 + ", fn4=" + fn4 + ", fnC=" + fnC + ", subject=" + subject
+				+ ", note=" + note + "]";
+	}
+	
+	
+	
 }

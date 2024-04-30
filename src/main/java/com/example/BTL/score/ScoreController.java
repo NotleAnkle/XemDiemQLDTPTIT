@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.example.BTL.Subject.ScoreRate;
 import com.example.BTL.Subject.Subject;
@@ -23,6 +26,7 @@ import com.example.BTL.term.TermDAO;
 import com.example.BTL.user.User;
 import com.example.BTL.user.UserController;
 
+@EnableWebMvc
 @Controller
 @SessionAttributes("user")
 public class ScoreController {
@@ -31,6 +35,7 @@ public class ScoreController {
 	TermDAO termDAO = new TermDAO();
 
 	@GetMapping("/user/score/{id}")
+	@ResponseStatus(HttpStatus.OK)
 	public String getScoresByStudent(Model model, @PathVariable String id) {
 		User user = UserController.user;
 		if (user.getId() == 0) {
@@ -104,8 +109,10 @@ public class ScoreController {
 		}
 		return scoreInTerm;
 	}
+	
 	@GetMapping("/score/user/{id}/term/{termId}")
-	public String getScoreById(Model model, @PathVariable String termId, @PathVariable String id) {
+	@ResponseStatus(HttpStatus.OK)
+	public String getScoreByStudentIdAndTermId(Model model, @PathVariable String termId, @PathVariable String id) {
 		model.addAttribute("user", UserController.user);
 		List<Term> terms = termDAO.getAllTerm();
 		model.addAttribute("terms", terms);
@@ -124,7 +131,9 @@ public class ScoreController {
 		model.addAttribute("termScore", termScore);
 		return "input";
 	}
+	
 	@PostMapping("/score/user/{id}/term/{termId}")
+	@ResponseStatus(HttpStatus.OK)
 	public String tryScore(@RequestBody RequestScore rs, Model model, @PathVariable String termId, @PathVariable String id) {
 		model.addAttribute("user", UserController.user);
 		List<Term> terms = termDAO.getAllTerm();
@@ -167,7 +176,9 @@ public class ScoreController {
 		
 		return "input";
 	}
+	
 	@PutMapping("/score/user/{id}/term/{termId}")
+	@ResponseStatus(HttpStatus.OK)
 	public String saveScore(@RequestBody RequestScore rs, Model model, @PathVariable String termId, @PathVariable String id) {
 		
 		List<Score> tryTermScore = rs.getScores();
@@ -210,6 +221,7 @@ public class ScoreController {
 	}
 
 	@GetMapping("/score/{id}")
+	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Score getScoreById(@PathVariable String id) {
 		Score score = scoreDAO.getScoreById(id);

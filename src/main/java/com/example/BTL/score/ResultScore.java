@@ -113,21 +113,21 @@ public class ResultScore {
         return roundedFloatValue;
 	}
 	
-	public int GetIndexOf(Score score) {
-		int index = -1;
-		
-		String subjectId = score.getSubjectId();
-		for(int i = 0; i < scores.size(); i++) {
-			if(scores.get(i).getSubjectId() == subjectId) {
-				index = i;
-				break;
-			}
-		}
-				
-		return index;
-	}
-	
-	public void ReplaceScore(int index, Score score) {
-		scores.set(index, score);
-	}
+//	public int GetIndexOf(Score score) {
+//		int index = -1;
+//		
+//		String subjectId = score.getSubjectId();
+//		for(int i = 0; i < scores.size(); i++) {
+//			if(scores.get(i).getSubjectId() == subjectId) {
+//				index = i;
+//				break;
+//			}
+//		}
+//				
+//		return index;
+//	}
+//	
+//	public void ReplaceScore(int index, Score score) {
+//		scores.set(index, score);
+//	}
 }

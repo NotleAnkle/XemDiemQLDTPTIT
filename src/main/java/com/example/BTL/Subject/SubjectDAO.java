@@ -47,6 +47,7 @@ public class SubjectDAO extends DAO {
                 	rate.setPractice(rs.getFloat("prac"));
                 	rate.setExam(rs.getFloat("exam"));
                 	
+                	sub.setRate(rate);
                 	sub.setName(rs.getString("name"));
                 	sub.setGroup(rs.getString("group"));
                 	sub.setCredit(rs.getFloat("credit"));

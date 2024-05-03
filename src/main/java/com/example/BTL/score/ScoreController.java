@@ -30,7 +30,7 @@ import com.example.BTL.user.UserController;
 @Controller
 @SessionAttributes("user")
 public class ScoreController {
-	ScoreDAO scoreDAO = new ScoreDAO();
+	public static ScoreDAO scoreDAO = new ScoreDAO();
 	SubjectDAO subjectDAO = new SubjectDAO();
 	TermDAO termDAO = new TermDAO();
 
@@ -98,7 +98,7 @@ public class ScoreController {
 		List<String> subIds = subjectDAO.getSubInTerm(termId);
 		List<Score> scoreInTerm = new ArrayList<>();
 		for (int i = 0; i < subIds.size(); i++) {
-			Score score = scoreDAO.getScoreBySubjectAndTerm(subIds.get(i), termId);
+			Score score = scoreDAO.getScoreBySubjectAndTerm(subIds.get(i), termId, id);
 			
 			Subject sub = subjectDAO.getSubject(subIds.get(i));
 			
@@ -200,23 +200,24 @@ public class ScoreController {
 		for(int i = 0; i < tryTermScore.size(); i ++) {
 			Score scoreForSave = tryTermScore.get(i);
 			scoreForSave.setTermId(Integer.parseInt(termId));
+			scoreForSave.setStudentId(Integer.parseInt(id));
 			
 			String scoreSubjectId = scoreForSave.getSubjectId()+termId;
 			
 			//nếu list id chứa id này thì thay thế điểm đó với điểm mới
 			if(allScoreSubjectId.contains(scoreSubjectId)) {
-				Score scoreForId = scoreDAO.getScoreBySubjectAndTerm(scoreForSave.getSubjectId(), termId);
+				Score scoreForId = scoreDAO.getScoreBySubjectAndTerm(scoreForSave.getSubjectId(), termId, id);
 				scoreForSave.setId(scoreForId.getId());
 
-				scoreDAO.UpdateScore(scoreForSave);
+				Boolean result = scoreDAO.UpdateScore(scoreForSave);
 			}
 			else {
 				scoreForSave.setStudentId(rs.getStudentId());
 				
-				scoreDAO.InsertScore(scoreForSave);
+				Boolean result = scoreDAO.InsertScore(scoreForSave);
 			}
 		}
-		
+
 		return "redirect:/user/score/" + rs.getStudentId();
 	}
 

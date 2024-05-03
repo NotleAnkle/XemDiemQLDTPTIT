@@ -86,13 +86,14 @@ public class ScoreDAO extends DAO {
         }
 		return score;
 	}
-	public Score getScoreBySubjectAndTerm(String subjectId, String termId) {
+	public Score getScoreBySubjectAndTerm(String subjectId, String termId, String studentId) {
 		Score score = new Score();
-		String sql = "SELECT * FROM tblscore WHERE subjectId = ? and termId = ?";
+		String sql = "SELECT * FROM tblscore WHERE subjectId = ? and termId = ? and studentId = ?";
         try {
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setString(1, subjectId);
                 ps.setString(2, termId);
+                ps.setString(3, studentId);
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()) {
                 	score.setId(rs.getInt("id"));

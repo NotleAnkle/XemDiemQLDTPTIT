@@ -64,7 +64,8 @@ public class ScoreDAOTest {
         // Test lấy điểm bởi mã môn học và học kỳ
         String subjectId = "BAS1105M";
         int termId = 1;
-        Score score = scoreDAO.getScoreBySubjectAndTerm(subjectId, String.valueOf(termId));
+        int studentId = 1;
+        Score score = scoreDAO.getScoreBySubjectAndTerm(subjectId, String.valueOf(termId), String.valueOf(studentId));
 
         Score fScore = new Score(1, 1, "BAS1105M", 0,0,0,0,7,1, null);
         // Kiểm tra xem điểm có tồn tại không

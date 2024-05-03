@@ -2,8 +2,10 @@ package com.example.BTL;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,5 +131,37 @@ public class ScoreControllerTest {
         
         assertEquals(sc.length, 14);
         
+    }
+    
+    @Test
+    public void testSaveScore() throws Exception { 
+    	ScoreController.scoreDAO.SetDAOForTest();
+    	
+    	User user = new User();
+        user.setId(1); // Assuming a valid user ID
+        UserController.user = user;
+        List<Score> scores = new ArrayList<Score>();
+        scores.add(new Score());
+        scores.add(new Score());
+        scores.add(new Score());
+        scores.add(new Score());
+        scores.add(new Score());
+        scores.add(new Score());
+        
+        RequestScore requestScore = new RequestScore(1,1,scores);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        String requestJson= ow.writeValueAsString(requestScore);
+        
+        mockMvc.perform(put("/score/user/1/term/1")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(requestJson))
+        .andExpect(status().isOk())
+        .andExpect(redirectedUrl("/user/score/1"));
+        ;
+        
+        ScoreController.scoreDAO.RollBack();
     }
 }

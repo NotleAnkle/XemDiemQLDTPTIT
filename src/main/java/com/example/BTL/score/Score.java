@@ -193,9 +193,9 @@ public class Score {
 			fnC = "A+";
 		}
 	}
-	public boolean compareTo(Score sc) {
-		return this.fn10 > sc.fn10;
-	}
+//	public boolean compareTo(Score sc) {
+//		return this.fn10 > sc.fn10;
+//	}
 
 	@Override
 	public int hashCode() {

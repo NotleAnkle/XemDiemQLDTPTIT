@@ -173,13 +173,14 @@
     
     function getIdData(){
     	selectedTermId = document.getElementById("terms").value;
-    	userId = document.getElementById("user").getAttribute('data-userid');
+    	userId = user.id;
     	console.log(selectedTermId);
     }
 
     function changeTerm(){
 		getIdData();
-    	fetchScoreInTerm(selectedTermId, userId)
+    	fetchScoreInTerm(selectedTermId, userId);
+        Select();
     }
     function fetchScoreInTerm(termId, studentId){
 
@@ -246,6 +247,8 @@
         // Gửi dữ liệu điểm đến máy chủ
         fetchChangeScoreInTerm(selectedTermId, userId, 'PUT', scores);
     }
+    
+    var justAFuckingUrl;
 
     function fetchChangeScoreInTerm(termId, studentId, method, scores) {
         // Tạo dữ liệu formData từ scores và các thông tin cần thiết khác
@@ -274,13 +277,20 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+                justAFuckingUrl = response.headers.get('Location');
                 return response.text(); // Lấy nội dung của trang HTML trả về
             }
+            
         })
         .then(html => {
-            // Thay đổi nội dung của trang hiện tại bằng nội dung HTML mới
-            document.body.innerHTML = html;
-            Select();
+            if (html !== "") {
+                // Thay đổi nội dung của trang hiện tại bằng nội dung HTML mới
+                document.body.innerHTML = html;
+                console.log(html);
+            } else {
+                console.error('Received HTML content is null.');
+                window.location.href = justAFuckingUrl;
+            }
         })
         .catch(error => {
             console.error('There was a problem with the POST request:', error);

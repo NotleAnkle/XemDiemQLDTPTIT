@@ -47,11 +47,11 @@ public class UserController {
     	return "redirect:/home";
     }
     
-    @GetMapping("/user/infor/{id}")
-    public String UserInfor(Model model, @PathVariable String id) {
-    	model.addAttribute("user", user);
-    	return "infor";
-    }
+//    @GetMapping("/user/infor/{id}")
+//    public String UserInfor(Model model, @PathVariable String id) {
+//    	model.addAttribute("user", user);
+//    	return "infor";
+//    }
         
 //	@PostMapping("/register")
 //	public String addUser(@RequestBody User user) {

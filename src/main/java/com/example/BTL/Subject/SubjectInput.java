@@ -22,52 +22,52 @@ public class SubjectInput {
 		this.isAccum = isAccum;
 		score = new Score();
 	}
-
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getGroup() {
-		return group;
-	}
-	public void setGroup(String group) {
-		this.group = group;
-	}
-	public float getCredit() {
-		return credit;
-	}
-	public void setCredit(float credit) {
-		this.credit = credit;
-	}
-	public ScoreRate getRate() {
-		return rate;
-	}
-	public void setRate(ScoreRate rate) {
-		this.rate = rate;
-	}
-
-	public boolean isAccum() {
-		return isAccum;
-	}
-
-	public void setAccum(boolean isAccum) {
-		this.isAccum = isAccum;
-	}
-
-	public Score getScore() {
-		return score;
-	}
-
-	public void setScore(Score score) {
-		this.score = score;
-	}
+//
+//	public String getId() {
+//		return id;
+//	}
+//	public void setId(String id) {
+//		this.id = id;
+//	}
+//	public String getName() {
+//		return name;
+//	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//	public String getGroup() {
+//		return group;
+//	}
+//	public void setGroup(String group) {
+//		this.group = group;
+//	}
+//	public float getCredit() {
+//		return credit;
+//	}
+//	public void setCredit(float credit) {
+//		this.credit = credit;
+//	}
+//	public ScoreRate getRate() {
+//		return rate;
+//	}
+//	public void setRate(ScoreRate rate) {
+//		this.rate = rate;
+//	}
+//
+//	public boolean isAccum() {
+//		return isAccum;
+//	}
+//
+//	public void setAccum(boolean isAccum) {
+//		this.isAccum = isAccum;
+//	}
+//
+//	public Score getScore() {
+//		return score;
+//	}
+//
+//	public void setScore(Score score) {
+//		this.score = score;
+//	}
 	
 }

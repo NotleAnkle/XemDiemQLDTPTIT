@@ -250,17 +250,19 @@ public class ScoreController {
 			if(sc.note != null) {
 				note = sc.note.trim();
 			}
-			
-			if(!note.equals("I")) {
 
+			if(!note.equals("I")) {
+				
 				if (sub.isAccum()) {
 					totalSc10 += fnSc * sub.getCredit();
 					totalSc4 += sc.fn4 * sub.getCredit();
 					totalCredit += sub.getCredit();
-					if(!note.equals("R") && !note.equals("M")) {
-						sc10 += fnSc * sub.getCredit();
-						sc4 += sc.fn4 * sub.getCredit();
-						credit += sub.getCredit();
+					if(!note.equals("R")) {
+						if(!note.equals("M")) {
+							sc10 += fnSc * sub.getCredit();
+							sc4 += sc.fn4 * sub.getCredit();
+							credit += sub.getCredit();
+						}
 					}
 				}
 			}

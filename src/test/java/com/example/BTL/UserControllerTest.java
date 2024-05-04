@@ -46,7 +46,19 @@ public class UserControllerTest {
     }
     
     @Test
+    public void testGetLoginFormLogged() throws Exception {	
+    	UserController.user = new User(1, "B20DCCN070", "123", "Anh", "admin");
+    			
+    	mockMvc.perform(get("/home"))
+		.andExpect(status().isOk()) // Kiểm tra HTTP status code
+		.andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML)) // Kiểm tra contentType là HTML
+		.andExpect(content().string(Matchers.containsString("<title>Home</title>"))); // Kiểm tra nội dung HTML
+    	
+    }
+    @Test
     public void testGetLoginForm() throws Exception {
+
+    	UserController.user= new User();
     	
     	mockMvc.perform(get("/home"))
 		.andExpect(status().isOk()) // Kiểm tra HTTP status code

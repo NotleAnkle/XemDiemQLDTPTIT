@@ -32,6 +32,7 @@ public class TermDAOTest {
 
         // Kiểm tra xem danh sách học kỳ có tồn tại không
         assertNotNull(terms);
+        assertEquals(terms.size(), 3);
     }
 
     @Test
@@ -41,6 +42,19 @@ public class TermDAOTest {
         Term term = termDAO.getTermById(termId);
         
         Term fTerm = new Term(1, "2020-2021", "1");
+        // Kiểm tra xem học kỳ có tồn tại không
+        assertNotNull(term);
+        assertEquals(term.getId(), fTerm.getId());
+        assertEquals(term.getYear(), fTerm.getYear());
+        assertEquals(term.getTerm(), fTerm.getTerm());
+    }
+    @Test
+    public void testGetTermByIdInvalid() {
+        // Test lấy học kỳ theo id đã biết
+        int termId = 0;
+        Term term = termDAO.getTermById(termId);
+        
+        Term fTerm = new Term();
         // Kiểm tra xem học kỳ có tồn tại không
         assertNotNull(term);
         assertEquals(term.getId(), fTerm.getId());

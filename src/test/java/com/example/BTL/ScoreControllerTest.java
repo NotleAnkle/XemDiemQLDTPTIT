@@ -70,6 +70,16 @@ public class ScoreControllerTest {
                 Matchers.hasProperty("scores", Matchers.hasSize(3))
             ))); // Kiểm tra term 3 có 3 phần tử trong scores
     }
+    @Test
+    public void testGetScoreByStudentInvalid() throws Exception {
+        User user = new User();
+        user.setId(0); // Assuming a valid user ID
+        UserController.user = user;
+        
+        mockMvc.perform(get("/user/score/1"))
+        .andExpect(status().isOk())
+        .andExpect(redirectedUrl("/home")); 
+    }
     
     @Test
     public void testGetScoreByStudentIdAndTermId() throws Exception {
@@ -86,6 +96,21 @@ public class ScoreControllerTest {
         .andExpect(model().attribute("scores", Matchers.hasSize(6)))
         ;
     }
+    @Test
+    public void testGetScoreByStudentIdAndTermId2() throws Exception {
+        User user = new User();
+        user.setId(1); // Assuming a valid user ID
+        UserController.user = user;
+        
+        mockMvc.perform(get("/score/user/2/term/1"))
+        .andExpect(status().isOk())
+        .andExpect(model().attributeExists("user"))
+        .andExpect(model().attributeExists("terms"))
+        .andExpect(model().attribute("terms", Matchers.hasSize(3)))
+        .andExpect(model().attributeExists("scores"))
+        .andExpect(model().attribute("scores", Matchers.hasSize(6)))
+        ;
+    }
     
     @Test
     public void testTryScoreByStudentIdAndTermId() throws Exception {
@@ -93,9 +118,9 @@ public class ScoreControllerTest {
         user.setId(1); // Assuming a valid user ID
         UserController.user = user;
         List<Score> scores = new ArrayList<Score>();
-        scores.add(new Score());
-        scores.add(new Score());
-        scores.add(new Score());
+        scores.add(new Score(1,1,"BAS1105M", 1, 1,1,1,1,1,"I"));
+        scores.add(new Score(1,1,"BAS1106", 1, 1,1,1,1,1,"R"));
+        scores.add(new Score(1,1,"BAS1150", 1, 1,1,1,1,1,"M"));
         scores.add(new Score());
         scores.add(new Score());
         scores.add(new Score());
@@ -141,9 +166,9 @@ public class ScoreControllerTest {
         user.setId(1); // Assuming a valid user ID
         UserController.user = user;
         List<Score> scores = new ArrayList<Score>();
-        scores.add(new Score());
-        scores.add(new Score());
-        scores.add(new Score());
+        scores.add(new Score(1,1,"BAS1105M", 1, 1,1,1,1,1,"I"));
+        scores.add(new Score(1,1,"BAS1106", 1, 1,1,1,1,1,"R"));
+        scores.add(new Score(1,1,"BAS1150", 1, 1,1,1,1,1,"M"));
         scores.add(new Score());
         scores.add(new Score());
         scores.add(new Score());

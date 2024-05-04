@@ -219,13 +219,13 @@ public class Score {
 				&& Float.floatToIntBits(test) == Float.floatToIntBits(other.test);
 	}
 
-	@Override
-	public String toString() {
-		return "Score [id=" + id + ", studentId=" + studentId + ", termId=" + termId + ", subjectId=" + subjectId
-				+ ", attendance=" + attendance + ", exercise=" + exercise + ", test=" + test + ", practice=" + practice
-				+ ", exam=" + exam + ", fn10=" + fn10 + ", fn4=" + fn4 + ", fnC=" + fnC + ", subject=" + subject
-				+ ", note=" + note + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Score [id=" + id + ", studentId=" + studentId + ", termId=" + termId + ", subjectId=" + subjectId
+//				+ ", attendance=" + attendance + ", exercise=" + exercise + ", test=" + test + ", practice=" + practice
+//				+ ", exam=" + exam + ", fn10=" + fn10 + ", fn4=" + fn4 + ", fnC=" + fnC + ", subject=" + subject
+//				+ ", note=" + note + "]";
+//	}
 	
 	
 	

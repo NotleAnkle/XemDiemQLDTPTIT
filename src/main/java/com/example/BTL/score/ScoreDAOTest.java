@@ -35,6 +35,27 @@ public class ScoreDAOTest {
 
         // Kiểm tra xem danh sách điểm có tồn tại không
         assertNotNull(scores);
+        assertEquals(scores.size(), 17);
+    }
+    @Test
+    public void testGetStudentScore2() {
+        // Test lấy điểm của sinh viên với id đã biết
+        int studentId = 2;
+        List<Score> scores = scoreDAO.getStudentScore(studentId);
+
+        // Kiểm tra xem danh sách điểm có tồn tại không
+        assertNotNull(scores);
+        assertEquals(scores.size(), 6);
+    }
+    @Test
+    public void testGetStudentScoreInvalid() {
+        // Test lấy điểm của sinh viên với id đã biết
+        int studentId = 0;
+        List<Score> scores = scoreDAO.getStudentScore(studentId);
+
+        // Kiểm tra xem danh sách điểm có tồn tại không
+        assertNotNull(scores);
+        assertEquals(scores.size(), 0);
     }
 
     @Test
@@ -59,6 +80,34 @@ public class ScoreDAOTest {
 //        System.out.println(score.toString());
         assertEquals(score, fScore);
     }
+	@Test
+    public void testGetScoreByIdInvalid() {
+        // Test lấy điểm bởi id
+        String scoreId = "0";
+        Score score = scoreDAO.getScoreById(scoreId);
+        Score fScore = new Score();
+        // Kiểm tra xem điểm có tồn tại không
+        assertNotNull(score);
+//        System.out.println(score.toString());
+        assertEquals(score, fScore);
+    }
+	@Test
+    public void testGetScoreByIdInvalidCompare() {
+        // Test lấy điểm bởi id
+        String scoreId = "1";
+        Score score = scoreDAO.getScoreById(scoreId);
+        Score fScore = new Score();
+        
+        boolean isSelf = score.equals(score);
+        boolean isNull = score.equals(null);
+        boolean isNotClass = score.equals(new String());
+        // Kiểm tra xem điểm có tồn tại không
+        assertNotNull(score);
+//        System.out.println(score.toString());
+        assertEquals(isSelf, true);
+        assertEquals(isNull, false);
+        assertEquals(isNotClass, false);
+    }
     @Test
     public void testGetScoreBySubjectAndTerm() {
         // Test lấy điểm bởi mã môn học và học kỳ
@@ -68,6 +117,19 @@ public class ScoreDAOTest {
         Score score = scoreDAO.getScoreBySubjectAndTerm(subjectId, String.valueOf(termId), String.valueOf(studentId));
 
         Score fScore = new Score(1, 1, "BAS1105M", 0,0,0,0,7,1, null);
+        // Kiểm tra xem điểm có tồn tại không
+        assertNotNull(score);
+        assertEquals(score, fScore);
+    }
+    @Test
+    public void testGetScoreBySubjectAndTermInvalid() {
+        // Test lấy điểm bởi mã môn học và học kỳ
+        String subjectId = "0";
+        int termId = 1;
+        int studentId = 1;
+        Score score = scoreDAO.getScoreBySubjectAndTerm(subjectId, String.valueOf(termId), String.valueOf(studentId));
+
+        Score fScore = new Score();
         // Kiểm tra xem điểm có tồn tại không
         assertNotNull(score);
         assertEquals(score, fScore);

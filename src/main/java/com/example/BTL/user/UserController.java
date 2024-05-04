@@ -17,7 +17,7 @@ public class UserController {
     
     @GetMapping("/home")
     public String getLogin(Model model) {
-    	if(user.getUsername() != null) {
+    	if(user.getUsername() != "") {
     		model.addAttribute("user", user);
     	}
     	model.addAttribute("message", "dang cmn nhap di");

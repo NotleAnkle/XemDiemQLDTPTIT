@@ -6,8 +6,22 @@ public class User {
     private String password;
     private String name;
     private String role;
+    
+    public User() {
+		username = "";
+		id = 0;
+	}
 
-    public int getId() {
+    public User(int id, String username, String password, String name, String role) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.role = role;
+	}
+
+	public int getId() {
         return id;
     }
 

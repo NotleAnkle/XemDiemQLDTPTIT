@@ -1,0 +1,239 @@
+@charset "UTF-8";
+.noti__body{
+    height: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(rgb(255,255,255,0.5), rgb(255,255,255,0.5)), url(https://static.vecteezy.com/system/resources/previews/005/665/541/original/a-set-of-school-items-in-a-simple-doodle-style-line-illustration-isolated-on-background-vector.jpg);
+    background-repeat: repeat;
+    background-size: 50%;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.sticky-bar {
+    background-color: red;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navigation {
+    margin-left: auto;
+}
+
+.logo img {
+    height: 30px;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Để chiều cao của .content bằng chiều cao của màn hình */
+}
+
+#loggedContent {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%; /* Chiều rộng của phần loggedContent */
+    background-color: red;
+    padding: 20px;
+    color: white;
+}
+
+#funcionBar {
+    position: absolute;
+    top: calc(100% + 20px); /* Cách top của loggedContent 20px */
+    right: 0;
+    width: 30%;
+    background-color: red;
+    padding: 20px;
+    color: white;
+}
+
+.login-container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 300px;
+    margin-left: 20%;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+h2 {
+    margin-top: 20px; /* Cách phần trước 20px */
+    margin-bottom: 10px; /* Cách phần sau 10px */
+    font-size: 24px; /* Kích thước chữ 24px */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+/* Mỗi <tr th:each="term: ${terms}"> */
+tr {
+    margin-bottom: 20px; /* Khoảng cách giữa các dòng là 20px */
+}
+
+/* Các bảng <td th:text="${term.term}"></td> */
+td {
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+}
+
+/* Các nút button bên cạnh mỗi môn học */
+button {
+    background-color: transparent; /* Nền trong suốt */
+    border: none; /* Loại bỏ viền */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
+}
+
+#scoreDetailContainer {
+    position: fixed; /* Hiển thị cố định */
+    top: 50%; /* Cách đỉnh trang 50% */
+    left: 50%; /* Cách lề trái 50% */
+    transform: translate(-50%, -50%); /* Dịch chuyển khung điểm tới vị trí chính giữa */
+    padding: 20px; /* Khoảng cách viền và nội dung */
+    background-color: white; /* Màu nền trắng */
+    border: 1px solid black; /* Viền đen */
+    z-index: 9999; /* Đảm bảo khung hiển thị trên cùng */
+}
+
+#funcionBar > div {
+    flex: 1; /* Phần tử chiếm một phần bằng nhau */
+    margin-right: 10px; /* Khoảng cách bên phải 10px */
+}
+
+form {
+    width: 50%; /* Đảm bảo form chiếm một phần nhỏ của loggedContent */
+    margin-left: 1%; /* Khoảng cách từ lề trái của màn hình */
+    float: left; /* Cho phần tử form nằm bên trái */
+}
+
+form button {
+    background-color: red;
+    color: white;
+    border: none; /* Loại bỏ viền */
+    padding: 10px 20px; /* Tăng khoảng cách giữa nút và văn bản */
+    cursor: pointer; /* Biến con trỏ thành dấu nhấn khi di chuột vào nút */
+}
+
+form button:hover {
+    background-color: darkred;
+}
+
+form input,
+form button {
+    margin-bottom: 10px; /* Khoảng cách giữa các dòng */
+}
+
+.footer-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    .sticky-bar {
+        padding: 5px;
+    }
+
+    .logo img {
+        height: 20px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+    }
+
+    .login-container {
+        margin-top: 50px;
+    }
+
+    .login-container input {
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .footer-bar {
+		margin-top: 10%;
+        padding: 5px;
+    }
+}
+
+#scoreDetailContainer {
+    display: flex;
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    position: fixed; /* Đặt khối này cố định với cửa sổ trình duyệt */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Màu nền với độ mờ */
+    z-index: 9999; /* Đảm bảo khối này hiển thị trên các khối khác */
+}
+
+.close-button {
+    position: absolute; /* Hiển thị tuyệt đối */
+    top: 10px; /* Cách đỉnh 10px */
+    right: 10px; /* Cách lề phải 10px */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
+}
+
+#loggedContent {
+    width: 30%; 
+    padding: 0 20px; 
+}
+
+#funcionBar {
+    margin-top: 20px; 
+}
+
+.container {
+    width: 65%;
+    padding: 20px; 
+}

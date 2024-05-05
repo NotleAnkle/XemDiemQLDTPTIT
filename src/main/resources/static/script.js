@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const usernameInput = document.getElementById("username");
         const passwordInput = document.getElementById("password");
+        
+        window.onload = function() {
+        document.getElementById('username').focus();
+    	};
 
         const usernameValue = usernameInput.value.trim();
         const passwordValue = passwordInput.value.trim();

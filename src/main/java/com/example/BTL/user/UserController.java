@@ -14,13 +14,12 @@ public class UserController {
     private UserDAO userDAO = new UserDAO();
     static public User user = new User();
     static public boolean isLoggin = false;
-    
+
     @GetMapping("/home")
     public String getLogin(Model model) {
     	if(user.getUsername() != "") {
     		model.addAttribute("user", user);
     	}
-    	model.addAttribute("message", "dang cmn nhap di");
     	return "home";
     }
 
@@ -30,21 +29,31 @@ public class UserController {
         user.setUsername(username);
         user.setPassword(password);
         if(userDAO.checkLogin(user)) {
-        	model.addAttribute("message", "dang nhap than cong");
+//        	model.addAttribute("message", "Đăng nhập thành công");
         	this.user = user;
         	isLoggin = true;
         	model.addAttribute("user", user);
-            return "home";   
+
         } else {
             model.addAttribute("message", "Tên người dùng hoặc mật khẩu không chính xác");
-            return "redirect:/home"; 
+
         }
+        return "home"; 
     }
     @GetMapping("/logout")
     public String logOut() {
     	isLoggin = false;
     	user = new User();
     	return "redirect:/home";
+    }
+    
+    @GetMapping("/style.css")
+    public String getCSS() {
+    	return "style.css";
+    }
+    @GetMapping("/scripts.js")
+    public String getScript() {
+    	return "scripts.js";
     }
     
 //    @GetMapping("/user/infor/{id}")

@@ -7,7 +7,6 @@
 		<link rel = "stylesheet"  th:href="@{/style.css}"/>
     </head>
     <body>
-    <div>
 		<div class="sticky-bar">
 			<div class="navigation">
 				<a href="/home" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
@@ -16,12 +15,12 @@
 		<div class="content" th:if="${user == null}">
 			<div class="login-container">
 				<h2>Đăng nhập</h2>
-				<form id="loginForm" action="home" method="POST">
+				<form id="login-form" action="home" method="POST">
 				<input type="text" id="username" name="username" placeholder="Mã sinh viên">
 				<br />
 				<input type="password" id="password" name="password" placeholder="Mật khẩu"/>
 				<br/>
-				<input type="submit" value="Login" />
+				<input id="login-button" type="submit" value="Login" />
 				</form>
 			</div>
 		</div>
@@ -46,11 +45,10 @@
         	</div>
         </div>
 		<div class="footer-bar">
-			<p>Created by Team 0</p>
+			<p>Created by Team 15</p>
 		</div>
-    </div>
 	
-	<script src="script.js"></script>
+	<script src="scripts.js"></script>
     </body>
 </html>
 <script th:inline="javascript">
@@ -59,4 +57,7 @@
 
     var message = /*[[${message}]]*/ 'default';
     console.log(message);
+    if(message != null){
+    	alert(message);
+    }
 </script>

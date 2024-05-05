@@ -76,7 +76,6 @@ public class UserControllerTest {
                 .param("password", "123"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("home"))
-                .andExpect(model().attributeExists("message"))
                 .andExpect(model().attributeExists("user"));
     }
     
@@ -88,8 +87,7 @@ public class UserControllerTest {
         mockMvc.perform(post("/home")
                 .param("username", "testUsername")
                 .param("password", "testPassword"))
-                .andExpect(status().is3xxRedirection()) // Redirected to /home
-                .andExpect(redirectedUrl("/home"));
+                .andExpect(view().name("home"));
     }
     
     @Test

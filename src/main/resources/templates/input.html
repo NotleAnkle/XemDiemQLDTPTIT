@@ -46,9 +46,9 @@
         		<a th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a>
         	</div>
         </div>
-		<div class="footer-bar">
-			<p>Created by Team 0</p>
-		</div>
+<!-- 		<div class="footer-bar">
+			<p>Created by Team 15</p>
+		</div> -->
     </div>
 	
 	<div>
@@ -87,27 +87,27 @@
 					<td th:text="${score.subject.name}"></td>
 					<td th:text="${score.subject.credit}"></td>
 					<td>
-						<input th:value = ${score.attendance} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<input th:value = ${score.attendance} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
 						<p th:text="${score.subject.rate.attendance}+ '%'">
 					</td>
 					<td>
-						<input th:value = ${score.exercise} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<input th:value = ${score.exercise} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
 						<p th:text="${score.subject.rate.exercise}+ '%'">
 					</td>
 					<td>
-						<input th:value = ${score.test} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<input th:value = ${score.test} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
 						<p th:text="${score.subject.rate.test}+ '%'">
 					</td>
 					<td>
-						<input th:value = ${score.practice} id="numberInput" type="number"  onfocus="clearInput(this)" onblur="validateInput(this)">
+						<input th:value = ${score.practice} class="numberInput" type="number"  onfocus="clearInput(this)" onblur="validateInput(this)">
 						<p th:text="${score.subject.rate.practice}+ '%'">
 					</td>
 					<td>
-						<input th:value = ${score.exam} id="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+						<input th:value = ${score.exam} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
 						<p th:text="${score.subject.rate.exam}+ '%'">
 					</td>
 					<td>
-						<input th:value = ${score.note} id="numberInput" type="text" onfocus="clearInput(this)" onblur="validateNoteInput(this)">
+						<input th:value = ${score.note} id="stringInput" type="text" onfocus="clearInput(this)" onblur="validateNoteInput(this)">
 					</td>
 					<td th:text="${score.fn10}"></td>
 					<td th:text="${score.fn4}"></td>
@@ -116,8 +116,8 @@
 					</tr>
 				</tbody>
 			</table>
-		<button id="btTry" onclick="TryScore()">Xem điểm trước điểm trung bình</button>
-		<button onclick="SaveScore()">Lưu điểm</button>
+		<button id="btnTry" onclick="TryScore()">Xem điểm trước điểm trung bình</button>
+		<button id="btnSave" onclick="SaveScore()">Lưu điểm</button>
 	</div>
 	<div style="display: flex; justify-content: space-between;">
 		<div>

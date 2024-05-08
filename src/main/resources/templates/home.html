@@ -7,16 +7,6 @@
 		<link rel = "stylesheet"  th:href="@{/style.css}"/>
     </head>
     <body>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    <div id = "main">
-		<div class="content" th:if="${user == null}">
-			<div class="login-container">
-				<div class="thumbnail"><img th:src="@{/logo.png}"/></div>
-				<form id="loginForm" action="home" method="POST">
-=======
->>>>>>> Stashed changes
 		<div class="sticky-bar">
 			<div class="navigation">
 				<a href="/home" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
@@ -26,23 +16,11 @@
 			<div class="login-container">
 				<h2>Đăng nhập</h2>
 				<form id="login-form" action="home" method="POST">
-<<<<<<< Updated upstream
-=======
->>>>>>> dddc9612bcff70a27c7a33956539e1215747fbcf
->>>>>>> Stashed changes
 				<input type="text" id="username" name="username" placeholder="Mã sinh viên">
 				<br />
 				<input type="password" id="password" name="password" placeholder="Mật khẩu"/>
 				<br/>
-<<<<<<< Updated upstream
 				<input id="login-button" type="submit" value="Login" />
-=======
-<<<<<<< HEAD
-				<input id = "button" type="submit" value="Đăng nhập" />
-=======
-				<input id="login-button" type="submit" value="Login" />
->>>>>>> dddc9612bcff70a27c7a33956539e1215747fbcf
->>>>>>> Stashed changes
 				</form>
 			</div>
 		</div>
@@ -54,38 +32,21 @@
         			</div>
         			<p th:text="'Tài khoản: '+${user.username}"></p>
         			<p th:text="'Họ và tên: '+${user.name}"></p>
-        			<p th:text="'Vai trò: Sinh viên'"></p>
-        			<input type="submit" value="Đăng xuất" />
+        			<p th:text="'Vai trò: '+${user.role}"></p>
+        			<input type="submit" value="Logout" />
         		</form>
 
         	</div>
         	<div id="funcionBar" style="display: inline-block;">
         		<p>TÍNH NĂNG</p>
-<<<<<<< Updated upstream
         		<a id ="linkScores" th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
 <!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
-=======
-<<<<<<< HEAD
-        		<a th:href="@{/user/score/{id}(id = ${user.id})}"><button type="button">Xem điểm</button></a>
-<!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
-<!--        		<a th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a> -->
-        	</div>
-        </div>
-    </div>
-=======
-        		<a id ="linkScores" th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
-<!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
->>>>>>> Stashed changes
         		<a id ="linkInput" th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a>
         	</div>
         </div>
 		<div class="footer-bar">
 			<p>Created by Team 15</p>
 		</div>
-<<<<<<< Updated upstream
-=======
->>>>>>> dddc9612bcff70a27c7a33956539e1215747fbcf
->>>>>>> Stashed changes
 	
 	<script src="scripts.js"></script>
     </body>

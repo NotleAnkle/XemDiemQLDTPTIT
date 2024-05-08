@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-=======
->>>>>>> Stashed changes
 @charset "UTF-8";
 .noti__body{
     height: 600px;
@@ -24,171 +15,225 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
->>>>>>> dddc9612bcff70a27c7a33956539e1215747fbcf
 }
 
 .sticky-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff; /* Màu nền của thanh sticky bar */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
-  z-index: 999; /* Đảm bảo thanh sticky bar luôn hiển thị trên các phần khác */
-  display: flex;
-  justify-content: center; /* Canh giữa nội dung */
-  align-items: center; /* Canh giữa theo chiều dọc */
-  height: 60px; /* Độ dày của thanh sticky bar */
+    background-color: red;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .navigation {
-  padding: 0 20px; /* Khoảng cách nội dung với mép thanh sticky bar */
+    margin-left: auto;
 }
 
-.home-link {
-  text-decoration: none; /* Loại bỏ gạch chân từ liên kết */
-  color: #333; /* Màu chữ của liên kết */
-  font-weight: bold; /* Chữ đậm */
-  font-size: 18px; /* Kích cỡ của chữ */
+.logo img {
+    height: 30px;
 }
 
-.home-link:hover {
-  color: #555; /* Màu chữ khi di chuột qua liên kết */
+.navigation a {
+    color: white;
+    text-decoration: none;
 }
 
 .content {
-	margin-top: 160px;
-}
-
-.login-container {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 300px;
-  margin: 0 auto 100px;
-  padding: 30px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  text-align: center;
-  width: 45%;
-}
-.login-container .thumbnail {
-  background: rgb(255, 228, 171);
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 30px;
-  padding: 50px 30px;
-  border-top-left-radius: 100%;
-  border-top-right-radius: 100%;
-  border-bottom-left-radius: 100%;
-  border-bottom-right-radius: 100%;
-  box-sizing: border-box;
-}
-.login-container .thumbnail img {
-  display: block;
-  width: 150%;
-  margin-left: -25%;
-}
-.login-container input {
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-.login-container #button {
-  outline: 0;
-  background: rgb(241, 148, 26);
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  color: #FFFFFF;
-  font-size: 14px;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-
-.info h1 {
-  font-weight: bolder;
-}
-
-.login-container #button:hover {
-  color: rgb(241, 148, 26);
-  background-color: rgb(254, 211, 129);
-}
-
-.info-container {
-  position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
-}
-.info-container:before, .info-container:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-.info-container .info {
-  margin: 50px auto;
-  text-align: center;
-}
-.info-container .info h1 {
-  margin: 0 0 15px;
-  padding: 0;
-  font-size: 36px;
-  font-weight: 300;
-  color: #1a1a1a;
-}
-.info-container .info span {
-  color: #4d4d4d;
-  font-size: 12px;
-}
-.info-container .info span a {
-  color: #000000;
-  text-decoration: none;
-}
-.info-container .info span .fa {
-  color: #EF3B3A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Để chiều cao của .content bằng chiều cao của màn hình */
 }
 
 #loggedContent {
-	margin-top: 100px;
-	display: flex;
-	flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 30%; /* Chiều rộng của phần loggedContent */
+    background-color: red;
+    padding: 20px;
+    color: white;
 }
 
-#logoutForm {
-  float: left; /* Đặt thẻ div sang bên trái */
-  margin-right: 20px; /* Khoảng cách giữa thẻ div và phần còn lại của trang */
+#funcionBar {
+    position: absolute;
+    top: calc(100% + 20px); /* Cách top của loggedContent 20px */
+    right: 0;
+    width: 30%;
+    background-color: red;
+    padding: 20px;
+    color: white;
 }
 
-.logged-content {
-  display: flex;
-  flex-direction: row;
+.login-container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 300px;
+    margin-left: 20%;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+h2 {
+    margin-top: 20px; /* Cách phần trước 20px */
+    margin-bottom: 10px; /* Cách phần sau 10px */
+    font-size: 24px; /* Kích thước chữ 24px */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+/* Mỗi <tr th:each="term: ${terms}"> */
+tr {
+    margin-bottom: 20px; /* Khoảng cách giữa các dòng là 20px */
+}
+
+/* Các bảng <td th:text="${term.term}"></td> */
+td {
+    padding: 10px; /* Khoảng cách giữa nội dung và viền */
+}
+
+/* Các nút button bên cạnh mỗi môn học */
+button {
+    background-color: transparent; /* Nền trong suốt */
+    border: none; /* Loại bỏ viền */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
+}
+
+#scoreDetailContainer {
+    position: fixed; /* Hiển thị cố định */
+    top: 50%; /* Cách đỉnh trang 50% */
+    left: 50%; /* Cách lề trái 50% */
+    transform: translate(-50%, -50%); /* Dịch chuyển khung điểm tới vị trí chính giữa */
+    padding: 20px; /* Khoảng cách viền và nội dung */
+    background-color: white; /* Màu nền trắng */
+    border: 1px solid black; /* Viền đen */
+    z-index: 9999; /* Đảm bảo khung hiển thị trên cùng */
+}
+
+#funcionBar > div {
+    flex: 1; /* Phần tử chiếm một phần bằng nhau */
+    margin-right: 10px; /* Khoảng cách bên phải 10px */
+}
+
+form {
+    width: 50%; /* Đảm bảo form chiếm một phần nhỏ của loggedContent */
+    margin-left: 1%; /* Khoảng cách từ lề trái của màn hình */
+    float: left; /* Cho phần tử form nằm bên trái */
+}
+
+form button {
+    background-color: red;
+    color: white;
+    border: none; /* Loại bỏ viền */
+    padding: 10px 20px; /* Tăng khoảng cách giữa nút và văn bản */
+    cursor: pointer; /* Biến con trỏ thành dấu nhấn khi di chuột vào nút */
+}
+
+form button:hover {
+    background-color: darkred;
+}
+
+form input,
+form button {
+    margin-bottom: 10px; /* Khoảng cách giữa các dòng */
+}
+
+.footer-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+    .sticky-bar {
+        padding: 5px;
+    }
+
+    .logo img {
+        height: 20px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+    }
+
+    .login-container {
+        margin-top: 50px;
+    }
+
+    .login-container input {
+        width: calc(100% - 20px);
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .footer-bar {
+		margin-top: 10%;
+        padding: 5px;
+    }
+}
+
+#scoreDetailContainer {
+    display: flex;
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    position: fixed; /* Đặt khối này cố định với cửa sổ trình duyệt */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Màu nền với độ mờ */
+    z-index: 9999; /* Đảm bảo khối này hiển thị trên các khối khác */
+}
+
+.close-button {
+    position: absolute; /* Hiển thị tuyệt đối */
+    top: 10px; /* Cách đỉnh 10px */
+    right: 10px; /* Cách lề phải 10px */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột vào */
+}
+
+#loggedContent {
+    width: 30%; 
+    padding: 0 20px; 
+}
+
+#funcionBar {
+    margin-top: 20px; 
 }
 
 .container {
-  margin-left: auto; /* Đặt margin-left là auto để đẩy container về bên phải */
+    width: 65%;
+    padding: 20px; 
 }
-
-body {
-  background: #ccc;
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-

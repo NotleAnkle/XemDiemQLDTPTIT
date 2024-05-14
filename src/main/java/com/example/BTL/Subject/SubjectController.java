@@ -18,4 +18,9 @@ public class SubjectController {
 	public List<String> getSubjects(@PathVariable String id){
 		return subjectDAO.getSubInTerm(id);
 	}
+	
+    @GetMapping("/inputs.css")
+    public String getCSS() {
+    	return "inputs.css";
+    }
 }

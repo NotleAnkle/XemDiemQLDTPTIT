@@ -1,0 +1,146 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#loggedContent {
+    position: fixed;
+    float: left;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(255, 228, 171);
+    top: 0;
+    left: 0;
+}
+
+#inputs {
+    float: right;
+    width: 80%;
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+#loggedContent button {
+    background: rgb(241, 148, 26);
+    border: none;
+    box-sizing: inherit;
+    color: white;
+    display: inline-block;
+    font-size: 0.8rem;
+    margin: 0px 0.3em 10px 0px;
+    outline: 0px;
+    padding: 0.4em 1.6em;
+    text-decoration-line: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 120px;
+}
+
+#loggedContent button:hover {
+    color: rgb(241, 148, 26);
+    background-color: rgb(254, 211, 129);
+}
+
+#scores button {
+    background: rgb(241, 148, 26);
+    border: none;
+    box-sizing: inherit;
+    color: white;
+    display: inline-block;
+    font-size: 0.8rem;
+    margin: 0px 0.3em 10px 0px;
+    outline: 0px;
+    padding: 0.4em 1.6em;
+    text-decoration-line: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 120px;
+}
+
+#scores button:hover {
+    color: rgb(241, 148, 26);
+    background-color: rgb(254, 211, 129);
+}
+
+.app input {
+    background: rgb(241, 148, 26);
+    border: none;
+    box-sizing: inherit;
+    color: white;
+    display: inline-block;
+    font-size: 0.8rem;
+    margin: 0px 0.3em 10px 0px;
+    outline: 0px;
+    padding: 0.4em 1.6em;
+    text-decoration-line: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 120px;
+}
+
+.app input:hover{
+    color: rgb(241, 148, 26);
+    background-color: rgb(254, 211, 129);
+}
+
+.loggedContent .logo {
+    width: 100%; /* Đảm bảo logo chiếm toàn bộ chiều rộng của contents */
+    background-color: rgb(253, 158, 62);
+}
+
+.resized-image {
+    width: 80%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng của div */
+    height: auto; /* Tự động điều chỉnh chiều cao để giữ tỷ lệ khung hình */
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+#logoutForm {
+    margin-top: 15%;
+    padding: 0 15%;
+}
+
+#funcionBar {
+    margin-top: 15%;
+    padding: 0 15%;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 50px;
+}
+
+
+#inputs .row{
+    margin-top: 30px;
+}
+
+.term-row {
+    margin-top: 30px;
+}
+
+.scoreinfo {
+    margin-top: 3%;
+}
+
+table {
+    margin-top: 1%;
+}
+
+.container button{
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+}
+
+#scoreDetailContainer {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+}

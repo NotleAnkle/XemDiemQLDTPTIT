@@ -7,47 +7,43 @@
 		<link rel = "stylesheet"  th:href="@{/style.css}"/>
     </head>
     <body>
-		<div class="sticky-bar">
-			<div class="navigation">
-				<a href="/home" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
+		<div id = "main">
+			<div class="content" th:if="${user == null}">
+				<div class="login-container">
+					<div class="thumbnail"><img th:src="@{/logo.png}"/></div>
+					<form id="loginForm" action="home" method="POST">
+					<input type="text" id="username" name="username" placeholder="Mã sinh viên">
+					<br />
+					<input type="password" id="password" name="password" placeholder="Mật khẩu"/>
+					<br/>
+					<input id = "button" type="submit" value="Đăng nhập" />
+					</form>
+				</div>
 			</div>
-		</div>
-		<div class="content" th:if="${user == null}">
-			<div class="login-container">
-				<h2>Đăng nhập</h2>
-				<form id="login-form" action="home" method="POST">
-				<input type="text" id="username" name="username" placeholder="Mã sinh viên">
-				<br />
-				<input type="password" id="password" name="password" placeholder="Mật khẩu"/>
-				<br/>
-				<input id="login-button" type="submit" value="Login" />
-				</form>
-			</div>
-		</div>
-        <div id="loggedContent" th:if="${user != null}">
-        	<div id ="logoutForm" method ="POST">
-        		<form action="logout">
-        			<div>
-        				<p>THÔNG TIN</p>
-        			</div>
-        			<p th:text="'Tài khoản: '+${user.username}"></p>
-        			<p th:text="'Họ và tên: '+${user.name}"></p>
-        			<p th:text="'Vai trò: '+${user.role}"></p>
-        			<input type="submit" value="Logout" />
-        		</form>
 
-        	</div>
-        	<div id="funcionBar" style="display: inline-block;">
-        		<p>TÍNH NĂNG</p>
-        		<a id ="linkScores" th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
-<!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
-        		<a id ="linkInput" th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a>
-        	</div>
-        </div>
-		<div class="footer-bar">
-			<p>Created by Team 15</p>
+			<div id="loggedContent" th:if="${user != null}">
+				<div class="logo">
+					<img th:src = "@{/logo.png}" alt="Logo" class="resized-image">
+				</div>
+
+				<div id ="logoutForm" method ="POST">
+					<form action="logout">
+						<h1>THÔNG TIN</h1>
+						<p th:text="'Tài khoản: '+${user.username}"></p>
+						<p th:text="'Họ và tên: '+${user.name}"></p>
+						<p th:text="'Vai trò: '+${user.role}"></p>
+						<input type="submit" value="Logout" />
+					</form>
+
+				</div>
+				<div id="funcionBar" style="display: inline-block;">
+					<p>TÍNH NĂNG</p>
+					<a id ="linkScores" th:href="@{/user/score/{id}(id = ${user.id})}"><button type="button">Xem điểm</button></a>
+	<!--         	<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
+					<a id ="linkInput" th:href="@{/score/user/{id}/term/1(id = ${user.id})}"><button type="button">Nhập điểm</button></a>
+				</div>
+			</div>
 		</div>
-	
 	<script src="scripts.js"></script>
     </body>
 </html>

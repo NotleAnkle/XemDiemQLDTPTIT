@@ -228,6 +228,11 @@ public class ScoreController {
 		Score score = scoreDAO.getScoreById(id);
 		return score;
 	}
+	
+    @GetMapping("/scores.css")
+    public String getCSS() {
+    	return "scores.css";
+    }
 
 	private ResultScore CalGPA(List<Score> scores) {
 
@@ -279,4 +284,5 @@ public class ScoreController {
 		rs.setCpa4(cpa4);
 		return rs;
 	}
+	
 }

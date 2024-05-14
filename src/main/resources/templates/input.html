@@ -4,136 +4,136 @@
     <head>
         <meta charset="UTF-8">
         <title>Score input</title>
+        <script src="https://kit.fontawesome.com/a93fe6ce24.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel = "stylesheet" th:href="@{/style.css}"/>
     </head>
-    <body>
-    <div>
-		<div class="sticky-bar">
-			<div class="navigation">
-				<a href="/home" class="home-link"><i class="fas fa-home"></i> Trang chủ</a>
-			</div>
-		</div>
-		<div class="content" th:if="${user == null}">
-			<div class="login-container">
-				<h2>Đăng nhập</h2>
-				<form id="loginForm" action="home" method="POST">
-				Username: <input type="text" id="username" name="username" placeholder="Mã sinh viên">
-				<br />
-				Password: <input type="text" id="password" name="password" placeholder="Mật khẩu"/>
-				<br/>
-				<input type="submit" value="Login" />
-				</form>
-			</div>
-		</div>
-        <div id="loggedContent" th:if="${user != null}">
-        	<div id ="logoutForm" method ="POST">
-        		<form action="logout">
-        			<div>
-        				<p>THÔNG TIN</p>
-        			</div>
-        			<p th:text="'Tài khoản: '+${user.username}"></p>
-        			<p th:text="'Họ và tên: '+${user.name}"></p>
-        			<p th:text="'Vai trò: '+${user.role}"></p>
-        			<input type="submit" value="Logout" />
-        		</form>
 
-        	</div>
-        	<div id="funcionBar" style="display: inline-block;">
-        		<p>TÍNH NĂNG</p>
-        		<a th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
-<!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
-        		<a th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a>
-        	</div>
+    <body>
+        <div class = "app">
+            <div id="contents">
+                <div class="content" th:if="${user == null}">
+                    <div class="login-container">
+                        <h2>Đăng nhập</h2>
+                        <form id="loginForm" action="home" method="POST">
+                        Username: <input type="text" id="username" name="username" placeholder="Mã sinh viên">
+                        <br />
+                        Password: <input type="text" id="password" name="password" placeholder="Mật khẩu"/>
+                        <br/>
+                        <input type="submit" value="Login" />
+                        </form>
+                    </div>
+                </div>
+            
+                <div id="loggedContent" th:if="${user != null}">
+                    <div class="logo">
+                        <img th:src = "@{/logo.png}" alt="Logo" class="resized-image">
+                    </div>
+
+                    <div id ="logoutForm" method ="POST">
+                        <form action="logout">
+                            <div>
+                                <p>THÔNG TIN</p>
+                            </div>
+                            <p th:text="'Tài khoản: '+${user.username}"></p>
+                            <p th:text="'Họ và tên: '+${user.name}"></p>
+                            <p th:text="'Vai trò: '+${user.role}"></p>
+                            <input type="submit" value="Logout" />
+                        </form>
+                    </div>
+                    <div id="funcionBar" style="display: inline-block;">
+                        <p>TÍNH NĂNG</p>
+                        <a th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
+        <!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
+                        <a th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a>
+                    </div>
+                </div>
+	
+                <div id="inputs">
+                    <h2>Nhập điểm</h2>
+                    
+                    <select id="terms" name="term" onchange="changeTerm()">
+                        <option th:each="term : ${terms}" th:value="${term.id}" th:text="'Học kỳ '+ ${term.term} + ' - Năm học '+${term.year}"></option>
+                    </select>
+	
+                    <div id="formScore" class="container">
+                        <div class="row"></div>
+                        <table class="table table-striped table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                <th>Mã môn học</th>
+                                <th>Nhóm/Tổ môn học</th>
+                                <th>Tên môn học</th>
+                                <th>Số tín chỉ</th>
+                                <th>Điểm chuyên cần</th>
+                                <th>Điểm bài tập</th>
+                                <th>Điểm kiểm tra</th>
+                                <th>Điểm thực hành</th>
+                                <th>Điểm thi</th>
+                                <th>Ghi chú</th>
+                                <th>Điểm TK(10)</th>
+                                <th>Điểm TK(4)</th>
+                                <th>Điểm TK(C)</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <tr th:each="score: ${scores}">
+                                <td th:text="${score.subject.id}"></td>
+                                <td th:text="${score.subject.group}"></td>
+                                <td th:text="${score.subject.name}"></td>
+                                <td th:text="${score.subject.credit}"></td>
+                                <td>
+                                    <input th:value = ${score.attendance} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+                                    <p th:text="${score.subject.rate.attendance}+ '%'">
+                                </td>
+                                <td>
+                                    <input th:value = ${score.exercise} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+                                    <p th:text="${score.subject.rate.exercise}+ '%'">
+                                </td>
+                                <td>
+                                    <input th:value = ${score.test} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+                                    <p th:text="${score.subject.rate.test}+ '%'">
+                                </td>
+                                <td>
+                                    <input th:value = ${score.practice} class="numberInput" type="number"  onfocus="clearInput(this)" onblur="validateInput(this)">
+                                    <p th:text="${score.subject.rate.practice}+ '%'">
+                                </td>
+                                <td>
+                                    <input th:value = ${score.exam} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
+                                    <p th:text="${score.subject.rate.exam}+ '%'">
+                                </td>
+                                <td>
+                                    <input th:value = ${score.note} id="stringInput" type="text" onfocus="clearInput(this)" onblur="validateNoteInput(this)">
+                                </td>
+                                    <td th:text="${score.fn10}"></td>
+                                    <td th:text="${score.fn4}"></td>
+                                    <td th:text="${score.fnC}"></td>		
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button id="btnTry" onclick="TryScore()">Xem điểm trước điểm trung bình</button>
+                        <button id="btnSave" onclick="SaveScore()">Lưu điểm</button>
+                    </div>
+	    
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <p th:text ="'Điểm trung bình học kỳ hệ 4 : '+${termScore.gpa4}"><br>
+                            <p th:text ="'Điểm trung bình học kỳ hệ 10 : '+${termScore.gpa10}"><br>
+                            <p th:text ="'Số tín chỉ học kỳ : '+${termScore.totalCre}"><br>
+                        </div>
+                        <div>
+                            <p th:text ="'Điểm trung bình tích lũy hệ 4 : '+${termScore.cpa4}"><br>
+                            <p th:text ="'Điểm trung bình tích lũy hệ 10 : '+${termScore.cpa10}"><br>
+                            <p th:text ="'Số tín chỉ tích lũy : ' + ${termScore.cpaCre}"><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-<!-- 		<div class="footer-bar">
-			<p>Created by Team 15</p>
-		</div> -->
-    </div>
-	
-	<div>
-		<h2>Nhập điểm</h2>
-	    <select id="terms" name="term" onchange="changeTerm()">
-	        <option th:each="term : ${terms}" th:value="${term.id}" th:text="'Học kỳ '+ ${term.term} + ' - Năm học '+${term.year}"></option>
-	    </select>
-	</div>
-	
-	<div id="formScore" class="container">
-		<div class="row">
-		</div>
-			<table class="table table-striped table-bordered">
-				<thead class="table-dark">
-					<tr>
-					<th>Mã môn học</th>
-					<th>Nhóm/Tổ môn học</th>
-					<th>Tên môn học</th>
-					<th>Số tín chỉ</th>
-					<th>Điểm chuyên cần</th>
-					<th>Điểm bài tập</th>
-					<th>Điểm kiểm tra</th>
-					<th>Điểm thực hành</th>
-					<th>Điểm thi</th>
-					<th>Ghi chú</th>
-					<th>Điểm TK(10)</th>
-					<th>Điểm TK(4)</th>
-					<th>Điểm TK(C)</th>
-					</tr>
-				</thead>
-				
-				<tbody>
-					<tr th:each="score: ${scores}">
-					<td th:text="${score.subject.id}"></td>
-					<td th:text="${score.subject.group}"></td>
-					<td th:text="${score.subject.name}"></td>
-					<td th:text="${score.subject.credit}"></td>
-					<td>
-						<input th:value = ${score.attendance} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
-						<p th:text="${score.subject.rate.attendance}+ '%'">
-					</td>
-					<td>
-						<input th:value = ${score.exercise} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
-						<p th:text="${score.subject.rate.exercise}+ '%'">
-					</td>
-					<td>
-						<input th:value = ${score.test} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
-						<p th:text="${score.subject.rate.test}+ '%'">
-					</td>
-					<td>
-						<input th:value = ${score.practice} class="numberInput" type="number"  onfocus="clearInput(this)" onblur="validateInput(this)">
-						<p th:text="${score.subject.rate.practice}+ '%'">
-					</td>
-					<td>
-						<input th:value = ${score.exam} class="numberInput" type="number" onfocus="clearInput(this)" onblur="validateInput(this)">
-						<p th:text="${score.subject.rate.exam}+ '%'">
-					</td>
-					<td>
-						<input th:value = ${score.note} id="stringInput" type="text" onfocus="clearInput(this)" onblur="validateNoteInput(this)">
-					</td>
-					<td th:text="${score.fn10}"></td>
-					<td th:text="${score.fn4}"></td>
-					<td th:text="${score.fnC}"></td>
-					
-					</tr>
-				</tbody>
-			</table>
-		<button id="btnTry" onclick="TryScore()">Xem điểm trước điểm trung bình</button>
-		<button id="btnSave" onclick="SaveScore()">Lưu điểm</button>
-	</div>
-	<div style="display: flex; justify-content: space-between;">
-		<div>
-			<p th:text ="'Điểm trung bình học kỳ hệ 4 : '+${termScore.gpa4}"><br>
-			<p th:text ="'Điểm trung bình học kỳ hệ 10 : '+${termScore.gpa10}"><br>
-			<p th:text ="'Số tín chỉ học kỳ : '+${termScore.totalCre}"><br>
-		</div>
-		<div>
-			<p th:text ="'Điểm trung bình tích lũy hệ 4 : '+${termScore.cpa4}"><br>
-			<p th:text ="'Điểm trung bình tích lũy hệ 10 : '+${termScore.cpa10}"><br>
-			<p th:text ="'Số tín chỉ tích lũy : ' + ${termScore.cpaCre}"><br>
-		</div>
-	</div> 
-	
     </body>
 </html>
+
 <script th:inline="javascript">
 	var user = /*[[${user}]]*/ 'default';
 	console.log(user);

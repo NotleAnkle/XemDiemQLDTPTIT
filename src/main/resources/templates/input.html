@@ -27,8 +27,8 @@
             
                 <div id="loggedContent" th:if="${user != null}">
                     <div class="logo">
-                        <span class="text1">P</span>
-                        <span class="text2">SCHOOL</span>
+						<span class="text1">P</span>
+						<span class="text2">SCHOOL</span>
                     </div>
 
                     <div id ="logoutForm" method ="POST">
@@ -53,9 +53,11 @@
                 <div id="inputs">
                     <h2>Nhập điểm</h2>
                     
+					<div id="select-term">
                     <select id="terms" name="term" onchange="changeTerm()">
                         <option th:each="term : ${terms}" th:value="${term.id}" th:text="'Học kỳ '+ ${term.term} + ' - Năm học '+${term.year}"></option>
                     </select>
+					</div>
 	
                     <div id="formScore" class="container">
                         <div class="row"></div>
@@ -339,4 +341,4 @@
         }
     }
 
-</script>
+</script>>

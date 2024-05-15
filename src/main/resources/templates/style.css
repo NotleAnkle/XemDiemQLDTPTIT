@@ -156,27 +156,6 @@ h1 {
   background-color: rgb(254, 211, 129);
 }
 
-.main input {
-  background: rgb(241, 148, 26);
-  border: none;
-  box-sizing: inherit;
-  color: white;
-  display: inline-block;
-  font-size: 0.8rem;
-  margin: 0px 0.3em 10px 0px;
-  outline: 0px;
-  padding: 0.4em 1.6em;
-  text-decoration-line: none;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  width: 120px;
-}
-
-.main input:hover{
-  color: rgb(241, 148, 26);
-  background-color: rgb(254, 211, 129);
-}
-
 .loggedContent .logo {
   width: 100%; /* Đảm bảo logo chiếm toàn bộ chiều rộng của contents */
   background-color: rgb(253, 158, 62);

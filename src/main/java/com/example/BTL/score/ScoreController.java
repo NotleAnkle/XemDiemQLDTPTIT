@@ -259,9 +259,11 @@ public class ScoreController {
 			if(!note.equals("I")) {
 				
 				if (sub.isAccum()) {
-					totalSc10 += fnSc * sub.getCredit();
-					totalSc4 += sc.fn4 * sub.getCredit();
-					totalCredit += sub.getCredit();
+					if(fnSc >= 4) {
+						totalSc10 += fnSc * sub.getCredit();
+						totalSc4 += sc.fn4 * sub.getCredit();
+						totalCredit += sub.getCredit();
+					}
 					if(!note.equals("R")) {
 						if(!note.equals("M")) {
 							sc10 += fnSc * sub.getCredit();

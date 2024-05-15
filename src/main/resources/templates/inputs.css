@@ -47,6 +47,11 @@ h1 {
     font-weight: bolder;
 }
 
+h2 {
+	font-size: 40px;
+    font-weight: bold;
+}
+
 #loggedContent button {
     background: rgb(241, 148, 26);
     border: none;
@@ -68,7 +73,7 @@ h1 {
     background-color: rgb(254, 211, 129);
 }
 
-#inputs button {
+#formScore button {
     background: rgb(241, 148, 26);
     border: none;
     box-sizing: inherit;
@@ -81,10 +86,10 @@ h1 {
     text-decoration-line: none;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    width: 120px;
+    width: 150px;
 }
 
-#inputs button:hover {
+#formScore button:hover {
     color: rgb(241, 148, 26);
     background-color: rgb(254, 211, 129);
 }
@@ -176,7 +181,7 @@ table input {
     text-decoration-line: none;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    width: 120px;
+    width: 70px;
 }
 
 .container button{

@@ -167,6 +167,15 @@ table {
     box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
 }
 
+.scoreinfo thead {
+	text-align: center;
+}
+
+.scoreinfo th {
+	text-align: center;
+	vertical-align: middle;
+}
+
 #scoreDetailContainer {
     width: 100%;
     height: 100vh;

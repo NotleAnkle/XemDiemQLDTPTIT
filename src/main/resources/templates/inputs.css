@@ -94,6 +94,12 @@ h2 {
     background-color: rgb(254, 211, 129);
 }
 
+
+#formScore thead {
+	text-align: center;
+	vertical-align: baseline;
+}
+
 #logoutForm input {
     background: rgb(241, 148, 26);
     border: none;
@@ -187,8 +193,3 @@ table input {
 .container button{
     box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
 }
-
-.thead {
-	text-align: center;
-}
-

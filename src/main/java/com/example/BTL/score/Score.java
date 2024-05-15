@@ -147,9 +147,19 @@ public class Score {
 	public float CalFinalGracee() {
 		ScoreRate rate = subject.getRate();
 
+
+		
+		if((rate.getAttendance() > 0 && (int)attendance == 0) ||
+				(rate.getExercise() > 0 && (int)exercise == 0) ||
+				(rate.getTest() > 0 && (int)test == 0) ||
+				(rate.getPractice() > 0 && (int)practice == 0)) {
+			this.exam = 0;
+		}
+			
 		float fnSc = (this.attendance * rate.getAttendance() + this.exercise * rate.getExercise()
-				+ this.test * rate.getTest() + this.exam * rate.getExam() + this.practice * rate.getPractice())/100;
+		+ this.test * rate.getTest() + this.exam * rate.getExam() + this.practice * rate.getPractice())/100;
 		fnSc = (float) (Math.ceil(fnSc * 10) / 10);
+		
 		return fnSc;
 	}
 

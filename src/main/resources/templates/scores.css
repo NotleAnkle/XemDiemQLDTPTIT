@@ -5,6 +5,28 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.logo {
+	text-align: center;
+	top: 10%;
+}
+
+.logo span{
+	display: inline-block;
+	margin-top: 10%;
+}
+
+.text1 {
+	font-size: 3rem;
+	font-weight: bolder;
+	color: black;
+}
+
+.text2 {
+	font-size: 2rem;
+	font-weight: bolder;
+	color: chocolate;
+}
+
 #loggedContent {
     position: fixed;
     float: left;

@@ -2,25 +2,39 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-}
-
-.navigation {
-  padding: 0 20px; /* Khoảng cách nội dung với mép thanh sticky bar */
-}
-
-.home-link {
-  text-decoration: none; /* Loại bỏ gạch chân từ liên kết */
-  color: #333; /* Màu chữ của liên kết */
-  font-weight: bold; /* Chữ đậm */
-  font-size: 18px; /* Kích cỡ của chữ */
-}
-
-.home-link:hover {
-  color: #555; /* Màu chữ khi di chuột qua liên kết */
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .content {
 	margin-top: 160px;
+}
+
+.logo {
+	text-align: center;
+	top: 10%;
+}
+
+.logo span{
+	display: inline-block;
+	margin-top: 10%;
+}
+
+.text0 {
+	font-size: 3.5rem;
+	font-weight: bolder;
+	color: black;
+}
+
+.text1 {
+	font-size: 3rem;
+	font-weight: bolder;
+	color: black;
+}
+
+.text2 {
+	font-size: 2rem;
+	font-weight: bolder;
+	color: chocolate;
 }
 
 .login-container {
@@ -68,7 +82,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.login-container #button {
+.login-container #login-button {
   outline: 0;
   background: rgb(241, 148, 26);
   width: 100%;
@@ -92,6 +106,7 @@
   background-color: rgb(255, 228, 171);
   top: 0;
   left: 0;
+  margin-top: 0!important;
 }
 
 h1 {
@@ -116,6 +131,27 @@ h1 {
 }
 
 #loggedContent button:hover {
+  color: rgb(241, 148, 26);
+  background-color: rgb(254, 211, 129);
+}
+
+#loggedContent input {
+  background: rgb(241, 148, 26);
+  border: none;
+  box-sizing: inherit;
+  color: white;
+  display: inline-block;
+  font-size: 0.8rem;
+  margin: 0px 0.3em 10px 0px;
+  outline: 0px;
+  padding: 0.4em 1.6em;
+  text-decoration-line: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  width: 120px;
+}
+
+#loggedContent input:hover {
   color: rgb(241, 148, 26);
   background-color: rgb(254, 211, 129);
 }
@@ -154,13 +190,13 @@ h1 {
 }
 
 #logoutForm {
-  margin-top: 15%;
-  padding: 0 15%;
+  margin-top: 15%!important;
+  padding: 0 15%!important;
 }
 
 #funcionBar {
-  margin-top: 15%;
-  padding: 0 15%;
+  margin-top: 15%!important;
+  padding: 0 15%!important;
 }
 
 h2 {
@@ -172,7 +208,7 @@ h2 {
   font-weight: bolder;
 }
 
-.login-container #button:hover {
+.login-container #login-button:hover {
   color: rgb(241, 148, 26);
   background-color: rgb(254, 211, 129);
 }
@@ -217,7 +253,7 @@ h2 {
 	flex-direction: column;
 }
 
-#logoutForm {
+#logout-form {
   float: left; /* Đặt thẻ div sang bên trái */
   margin-right: 20px; /* Khoảng cách giữa thẻ div và phần còn lại của trang */
 }

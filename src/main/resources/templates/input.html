@@ -6,7 +6,7 @@
         <title>Score input</title>
         <script src="https://kit.fontawesome.com/a93fe6ce24.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel = "stylesheet" th:href="@{/style.css}"/>
+        <link rel = "stylesheet" th:href="@{/inputs.css}"/>
     </head>
 
     <body>
@@ -27,13 +27,14 @@
             
                 <div id="loggedContent" th:if="${user != null}">
                     <div class="logo">
-                        <img th:src = "@{/logo.png}" alt="Logo" class="resized-image">
+                        <span class="text1">P</span>
+                        <span class="text2">SCHOOL</span>
                     </div>
 
                     <div id ="logoutForm" method ="POST">
                         <form action="logout">
                             <div>
-                                <p>THÔNG TIN</p>
+                                <h1>THÔNG TIN</h1>
                             </div>
                             <p th:text="'Tài khoản: '+${user.username}"></p>
                             <p th:text="'Họ và tên: '+${user.name}"></p>
@@ -42,10 +43,10 @@
                         </form>
                     </div>
                     <div id="funcionBar" style="display: inline-block;">
-                        <p>TÍNH NĂNG</p>
-                        <a th:href="@{/user/score/{id}(id = ${user.id})}">Xem điểm</a>
+                        <h1>TÍNH NĂNG</h1>
+                        <a th:href="@{/user/score/{id}(id = ${user.id})}"><button type="button">Xem điểm</button></a>
         <!--         		<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
-                        <a th:href="@{/score/user/{id}/term/1(id = ${user.id})}">Nhập điểm</a>
+                        <a th:href="@{/score/user/{id}/term/1(id = ${user.id})}"><button type="button">Nhập điểm</button></a>
                     </div>
                 </div>
 	
@@ -112,7 +113,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button id="btnTry" onclick="TryScore()">Xem điểm trước điểm trung bình</button>
+                        <button id="btnTry" onclick="TryScore()">Xem trước</button>
                         <button id="btnSave" onclick="SaveScore()">Lưu điểm</button>
                     </div>
 	    

@@ -12,7 +12,8 @@
 			<div id="contents">
 				<div id="loggedContent" th:if="${user != null}">
 					<div class="logo">
-						<img th:src = "@{/logo.png}" alt="Logo" class="resized-image">
+						<span class="text1">P</span>
+						<span class="text2">SCHOOL</span>
 					</div>
 					
 					<div id ="logoutForm" method ="POST">
@@ -25,7 +26,7 @@
 						</form>
 					</div>
 					<div id="funcionBar" style="display: inline-block;">
-						<p>TÍNH NĂNG</p>
+						<h1>TÍNH NĂNG</h1>
 						<a th:href="@{/user/score/{id}(id = ${user.id})}"><button type="button">Xem điểm</button></a>
 						<!-- <a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
 						<a th:href="@{/score/user/{id}/term/1(id = ${user.id})}"><button type="button">Nhập điểm</button></a>

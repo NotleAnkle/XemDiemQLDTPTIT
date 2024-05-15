@@ -10,20 +10,23 @@
 		<div id = "main">
 			<div class="content" th:if="${user == null}">
 				<div class="login-container">
-					<div class="thumbnail"><img th:src="@{/logo.png}"/></div>
-					<form id="loginForm" action="home" method="POST">
+					<div class="thumbnail">
+						<span class="text0">P</span>
+					</div>
+					<form id="login-form" action="home" method="POST">
 					<input type="text" id="username" name="username" placeholder="Mã sinh viên">
 					<br />
 					<input type="password" id="password" name="password" placeholder="Mật khẩu"/>
 					<br/>
-					<input id = "button" type="submit" value="Đăng nhập" />
+					<input id = "login-button" type="submit" value="Đăng nhập" />
 					</form>
 				</div>
 			</div>
 
 			<div id="loggedContent" th:if="${user != null}">
 				<div class="logo">
-					<img th:src = "@{/logo.png}" alt="Logo" class="resized-image">
+					<span class="text1">P</span>
+					<span class="text2">SCHOOL</span>
 				</div>
 
 				<div id ="logoutForm" method ="POST">
@@ -37,7 +40,7 @@
 
 				</div>
 				<div id="funcionBar" style="display: inline-block;">
-					<p>TÍNH NĂNG</p>
+					<h1>TÍNH NĂNG</h1>
 					<a id ="linkScores" th:href="@{/user/score/{id}(id = ${user.id})}"><button type="button">Xem điểm</button></a>
 	<!--         	<a id="adminLink" href="/admin" th:if="${user.role == 'admin'}">Quản lý tài khoản</a> -->
 					<a id ="linkInput" th:href="@{/score/user/{id}/term/1(id = ${user.id})}"><button type="button">Nhập điểm</button></a>
@@ -47,6 +50,7 @@
 	<script src="scripts.js"></script>
     </body>
 </html>
+
 <script th:inline="javascript">
 	var user = /*[[${user}]]*/ 'default';
 	console.log(user);

@@ -47,6 +47,11 @@ h1 {
     font-weight: bolder;
 }
 
+h2 {
+	font-size: 40px;
+    font-weight: bold;
+}
+
 #loggedContent button {
     background: rgb(241, 148, 26);
     border: none;
@@ -68,7 +73,7 @@ h1 {
     background-color: rgb(254, 211, 129);
 }
 
-#inputs button {
+#formScore button {
     background: rgb(241, 148, 26);
     border: none;
     box-sizing: inherit;
@@ -81,15 +86,15 @@ h1 {
     text-decoration-line: none;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    width: 120px;
+    width: 150px;
 }
 
-#inputs button:hover {
+#formScore button:hover {
     color: rgb(241, 148, 26);
     background-color: rgb(254, 211, 129);
 }
 
-.app input {
+#logoutForm input {
     background: rgb(241, 148, 26);
     border: none;
     box-sizing: inherit;
@@ -105,7 +110,7 @@ h1 {
     width: 120px;
 }
 
-.app input:hover{
+#logoutForm input:hover{
     color: rgb(241, 148, 26);
     background-color: rgb(254, 211, 129);
 }
@@ -137,6 +142,10 @@ h2 {
     padding-top: 50px;
 }
 
+#select-term {
+	margin-top: 3%;
+	margin-left: 5%;
+}
 
 #inputs .row{
     margin-top: 30px;
@@ -150,10 +159,36 @@ h2 {
     margin-top: 3%;
 }
 
+#content {
+	width: 100%;
+}
+
 table {
     margin-top: 1%;
+    width: 100%!important;
+    font-size: 0.8rem;
+}
+
+table input {
+	background: rgb(249, 206, 106);
+    border: none;
+    box-sizing: inherit;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    margin: 0px 0.3em 10px 0px;
+    outline: 0px;
+    padding: 0.4em 1em;
+    text-decoration-line: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 70px;
 }
 
 .container button{
     box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
 }
+
+.thead {
+	text-align: center;
+}
+

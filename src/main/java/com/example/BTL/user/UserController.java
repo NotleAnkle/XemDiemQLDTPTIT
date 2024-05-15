@@ -55,10 +55,6 @@ public class UserController {
     public String getScript() {
     	return "scripts.js";
     }
-    @GetMapping("/logo.png")
-    public String getScript() {
-    	return "logo.png";
-    }
     
 //    @GetMapping("/user/infor/{id}")
 //    public String UserInfor(Model model, @PathVariable String id) {
